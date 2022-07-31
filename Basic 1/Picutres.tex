@@ -1,0 +1,168 @@
+\documentclass[11pt]{scrartcl}
+\usepackage{graphicx}
+\graphicspath{{./}}
+\usepackage[sexy]{evan}
+\usepackage[normalem]{ulem}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+\renewcommand{\baselinestretch}{1.5}
+
+\addtolength{\oddsidemargin}{-0.4in}
+\addtolength{\evensidemargin}{-0.4in}
+\addtolength{\textwidth}{0.8in}
+% \addtolength{\topmargin}{-0.2in}
+% \addtolength{\textheight}{1in} 
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+
+\begin{document}
+    \section{Geometri}
+    Pada dasarnya geometri di olimpiade matematika SMA "hanya" tentang lingkaran dan segitiga , "saja". 
+    
+    \subsection{Garis, Segmen Garis, Sinar (Bukan Vektor ya...)}
+    Perlu ditekankan bahwa \textbf{garis tidak sama dengan ruas garis}. Garis panjangnya tak hingga, sedangkan ruas garis atau segmen garis panjangnya terbatas. Gambar di bawah terdiri dari \textbf{garis AB, segmen garis CD, sinar EF}.
+\begin{center}
+        \definecolor{ududff}{rgb}{0.30196078431372547,0.30196078431372547,1}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\clip(-9,-3) rectangle (5,5);
+\draw [line width=2pt,domain=-12.65:12.65] plot(\x,{(--18.806--2.68*\x)/3.84});
+\draw [line width=2pt] (-4.47,-0.96)-- (-1.65,1.26);
+\draw [line width=2pt,domain=-3.19:12.649999999999997] plot(\x,{(--2.1004--2.44*\x)/2.96});
+\begin{scriptsize}
+\draw [fill=ududff] (-6.53,0.34) circle (2.5pt);
+\draw[color=ududff] (-6.38,0.74) node {$A$};
+\draw [fill=ududff] (-2.69,3.02) circle (2.5pt);
+\draw[color=ududff] (-2.54,3.42) node {$B$};
+\draw [fill=ududff] (-4.47,-0.96) circle (2.5pt);
+\draw[color=ududff] (-4.32,-0.56) node {$C$};
+\draw [fill=ududff] (-1.65,1.26) circle (2.5pt);
+\draw[color=ududff] (-1.5,1.66) node {$D$};
+\draw [fill=ududff] (-3.19,-1.92) circle (2.5pt);
+\draw[color=ududff] (-3.04,-1.52) node {$E$};
+\draw [fill=ududff] (-0.23,0.52) circle (2.5pt);
+\draw[color=ududff] (-0.08,0.92) node {$F$};
+\end{scriptsize}
+\end{tikzpicture}
+\end{center}
+    
+    \subsection{Lingkaran}
+    
+    
+Misalkan $O$ pusat lingkaran dan $A,B,C,D,E$ adalah sembarang titik seperti gambar.
+\begin{enumerate}
+    \item $CO=OA$ adalah jari-jari dengan $\angle ACO = \angle OAC$.
+    \item Misalkan titik $F$ adalah titik tengah tali busur $CA$, maka $OF \perp CA$ atau $OF$ tegak lurus dengan $CA$, dengan kata lain, $F$ adalah proyeksi titik $O$ ke $CA$
+    \item (Sudut keliling-sudut pusat) Untuk$\angle COA = 2\angle CBA$.
+    \item (sudut keliling) $\angle CBA = \angle CEA$.
+    \item $ABCD$ adalah segiempat tali busur atau segiempat siklis  atau $A,B,C,D$ terletak di lingkaran (seperti pada gambar) jika dan hanya jika $\angle CBA + \angle ADC = 180^\circ$.
+\end{enumerate}
+
+\section{Segitiga}
+
+
+\begin{enumerate}
+    \item Berlaku \textbf{ketaksamaan segitiga} yaitu $AB+BC>CA$, $BC+CA>AB$, dan $CA+AB>BC$. Selain itu juga berlaku $|AB-BC|<CA$, $|BC-CA|<AB$, dan $|CA-AB|<BC$.
+    \item Garis bagi $AE$ yaitu garis yang membagi dua sudut $A$ sama besar sehingga $\angle BAE = \angle EAC$. Berlaku \textbf{Teorema Garis Bagi}, yaitu $\dfrac{AB}{AC}=\dfrac{BE}{CE}$.
+    \item Garis berat $AM$ dengan $M$ adalah titik tengah $BC$.
+    \item Garis tinggi $AD$ adalah garis yang tegak lurus dengan $BC$. $D$ biasa disebut dengan proyeksi $A$ ke $BC$.
+    \item Garis $OM$ adalah salah satu garis sumbu segitiga $ABC$, yaitu garis yang melewati titik tengah sisi segitiga dan tegak lurus dengan sisi itu.
+    \item Pertemuan atau perpotongan ketiga garis tinggi segitiga $ABC$ adalah titik tinggi, dalam gambar ini adalah $H$ (orthocenter).
+    \item Pertemuan atau perpotongan ketiga garis bagi segitiga $ABC$ adalah titik bagi atau titik pusat lingkaran dalam (incircle $L2$) segitiga $ABC$ dalam gambar ini adalah $I$ (incenter).
+    \item Pertemuan atau perpotongan ketiga garis berat segitiga $ABC$ adalah titik berat (centroid).
+    \item Pertemuan atau perpotongan ketiga garis sumbu segitiga $ABC$ adalah titik pusat lingkaran luar (circumcircle $L1$) segitiga $ABC$ yang dalam gambar ini adalah $O$ (circumcenter).
+\end{enumerate}
+
+\subsection{Kesebangunan Segitiga}
+\begin{center}
+\definecolor{xdxdff}{rgb}{0.49019607843137253,0.49019607843137253,1}
+\definecolor{ttttff}{rgb}{0.2,0.2,1}
+\definecolor{qqzzff}{rgb}{0,0.6,1}
+\definecolor{ududff}{rgb}{0.30196078431372547,0.30196078431372547,1}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\clip(-6.5,0.5) rectangle (0.5,4);
+\fill[line width=2pt,color=qqzzff,fill=qqzzff,fill opacity=0.1] (-5.933781371406205,1.3073230946056116) -- (-5.37760978019042,2.72092588894573) -- (-3.76702954729471,1.3420838190565978) -- cycle;
+\fill[line width=0.8pt,color=xdxdff,fill=xdxdff,fill opacity=0.1] (-3.1992710479285953,0.9944765745467326) -- (-2.283905304052617,3.2307498475601983) -- (0.299975213470717,1.0524111152983768) -- cycle;
+\draw [line width=2pt,color=qqzzff] (-5.933781371406205,1.3073230946056116)-- (-5.37760978019042,2.72092588894573);
+\draw [line width=2pt,color=qqzzff] (-5.37760978019042,2.72092588894573)-- (-3.76702954729471,1.3420838190565978);
+\draw [line width=2pt,color=qqzzff] (-3.76702954729471,1.3420838190565978)-- (-5.933781371406205,1.3073230946056116);
+\draw [line width=0.8pt,color=xdxdff] (-3.1992710479285953,0.9944765745467326)-- (-2.283905304052617,3.2307498475601983);
+\draw [line width=0.8pt,color=xdxdff] (-2.283905304052617,3.2307498475601983)-- (0.299975213470717,1.0524111152983768);
+\draw [line width=0.8pt,color=xdxdff] (0.299975213470717,1.0524111152983768)-- (-3.1992710479285953,0.9944765745467326);
+\begin{scriptsize}
+\draw [fill=ududff] (-5.933781371406205,1.3073230946056116) circle (0.5pt);
+\draw[color=ududff] (-5.846879560278738,1.4463659924095578) node {$A$};
+\draw [fill=ududff] (-5.37760978019042,2.72092588894573) circle (0.5pt);
+\draw[color=ududff] (-5.290707969062953,2.859968786749677) node {$B$};
+\draw [fill=ududff] (-3.76702954729471,1.3420838190565978) circle (0.5pt);
+\draw[color=ududff] (-3.6801277361672433,1.4811267168605442) node {$C$};
+\draw [fill=ududff] (-3.1992710479285953,0.9944765745467326) circle (0.5pt);
+\draw[color=ududff] (-3.1123692368011295,1.133519472350679) node {$D$};
+\draw [fill=ududff] (-2.283905304052617,3.2307498475601983) circle (0.5pt);
+\draw[color=ududff] (-2.1970034929251505,3.3697927453641463) node {$E$};
+\draw [fill=ttttff] (0.299975213470717,1.0524111152983768) circle (0.5pt);
+\draw[color=ttttff] (0.38687702459818324,1.191454013102323) node {$F$};
+\end{scriptsize}
+\end{tikzpicture}
+\end{center}
+
+Segitiga $ABC$ dan $DEF$ sebangun atau $ABC \sim DEF$ jika dan hanya jika minimal salah satu syarat ini terpenuhi:
+\begin{enumerate}
+    \item $\angle ABC = \angle DEF$ dan $\angle BAC = \angle EDF$.
+    \item $\dfrac{AB}{DE} = \dfrac{BC}{EF} = \dfrac{CA}{FD}$.
+    \item $\dfrac{AB}{DE} = \dfrac{BC}{EF}$ dan $\angle ABC = \angle DEF$ (sudut yang diapit dua sisi yang diperbandingkan nilainya sama)
+\end{enumerate}
+
+\subsection{Kekongruenan Segitiga}
+\begin{center}
+\definecolor{xdxdff}{rgb}{0.49019607843137253,0.49019607843137253,1}
+\definecolor{ttttff}{rgb}{0.2,0.2,1}
+\definecolor{qqzzff}{rgb}{0,0.6,1}
+\definecolor{ududff}{rgb}{0.30196078431372547,0.30196078431372547,1}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\clip(-8,0.5) rectangle (0.5,4);
+\fill[line width=2pt,color=qqzzff,fill=qqzzff,fill opacity=0.1] (-7.671817593955533,1.110345656050021) -- (-6.756451850079554,3.3582058372138173) -- (-4.184158240706549,1.1914540131023228) -- cycle;
+\fill[line width=0.8pt,color=xdxdff,fill=xdxdff,fill opacity=0.1] (-3.8828986287979985,1.191454013102323) -- (-2.9675328849220186,3.4277272861157897) -- (-0.38365236739868475,1.2493885538539673) -- cycle;
+\draw [line width=2pt,color=qqzzff] (-7.671817593955533,1.110345656050021)-- (-6.756451850079554,3.3582058372138173);
+\draw [line width=2pt,color=qqzzff] (-6.756451850079554,3.3582058372138173)-- (-4.184158240706549,1.1914540131023228);
+\draw [line width=2pt,color=qqzzff] (-4.184158240706549,1.1914540131023228)-- (-7.671817593955533,1.110345656050021);
+\draw [line width=0.8pt,color=xdxdff] (-3.8828986287979985,1.191454013102323)-- (-2.9675328849220186,3.4277272861157897);
+\draw [line width=0.8pt,color=xdxdff] (-2.9675328849220186,3.4277272861157897)-- (-0.38365236739868475,1.2493885538539673);
+\draw [line width=0.8pt,color=xdxdff] (-0.38365236739868475,1.2493885538539673)-- (-3.8828986287979985,1.191454013102323);
+\begin{scriptsize}
+\draw [fill=ududff] (-7.671817593955533,1.110345656050021) circle (0.5pt);
+\draw[color=ududff] (-7.584915782828065,1.2493885538539673) node {$A$};
+\draw [fill=ududff] (-6.756451850079554,3.3582058372138173) circle (0.5pt);
+\draw[color=ududff] (-6.669550038952086,3.4972487350177635) node {$B$};
+\draw [fill=ududff] (-4.184158240706549,1.1914540131023228) circle (0.5pt);
+\draw[color=ududff] (-4.097256429579081,1.3304969109062692) node {$C$};
+\draw [fill=ududff] (-3.8828986287979985,1.191454013102323) circle (0.5pt);
+\draw[color=ududff] (-3.7959968176705314,1.3304969109062692) node {$D$};
+\draw [fill=ududff] (-2.9675328849220186,3.4277272861157897) circle (0.5pt);
+\draw[color=ududff] (-2.8806310737945524,3.5667701839197368) node {$E$};
+\draw [fill=ttttff] (-0.38365236739868475,1.2493885538539673) circle (0.5pt);
+\draw[color=ttttff] (-0.29675055627121893,1.3884314516579135) node {$F$};
+\end{scriptsize}
+\end{tikzpicture}
+\end{center}
+Sedangkan $ABC$ dan $DEF$ dikatakan kongruen atau $\triangle ABC \cong \triangle DEF$ jika dan hanya jika $AB=DE, BC=EF, CA=FD$ atau dengan kata lain kedua segitiga tersebut sebangun dan ada salah satu sisi dari kedua segitiga tersebut yang panjangnya sama. Simpelnya kongruen = sama persis.
+
+
+\section{Referensi}
+\begin{enumerate}
+    \item Hermanto, Eddy. 2011. Diktat Pembinaan Olimpiade Matematika Dasar.
+\end{enumerate}
+\end{document}
+
+
