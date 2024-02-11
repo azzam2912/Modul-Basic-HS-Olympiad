@@ -1,5 +1,16 @@
 \subsection{Dalil Menelaus}
-Jika pada segitiga $ABC$, titik $D,E$ berturut-turut berada di segmen $BC$,$CA$,serta $F$ pada garis $AB$, maka $D,E,F$ segaris jika dan hanya jika
-$$\dfrac{AF}{FB} \cdot \dfrac{BD}{DC} \cdot \dfrac{CE}{EA} = 1.$$
-
+Jika pada segitiga $ABC$, titik $P,Q,R$ berturut-turut berada pada garis (bisa di perpanjangan segmen) $BC$,$CA$, $AB$, maka $P,Q,R$ segaris jika dan hanya jika
+$$\dfrac{AR}{RB} \cdot \dfrac{BP}{PC} \cdot \dfrac{CQ}{QA} = 1.$$
+\begin{center}
+    \begin{asy}
+        unitsize(10);
+        defaultpen(fontsize(8));
+        pair P=(7,6), Q=(0,0), C=(10,0), A=(4,0), B=(6,8), R;
+        draw((A)--(B)--(C)--cycle,blue+0.75);
+        draw(P--R--Q--A);
+        R=intersectionpoint(A--B,Q--P);
+        dot(A^^B^^C^^P^^Q^^R);
+        label("A",A,(0,-1));label("B",B,(1,0));label("C",C,(1,0));label("P",P,(1,1));label("Q",Q,(-1,0));label("R",R,(-1,1));
+    \end{asy}
+\end{center}
 \input{Soal/Geometry/dalilMenelaus}

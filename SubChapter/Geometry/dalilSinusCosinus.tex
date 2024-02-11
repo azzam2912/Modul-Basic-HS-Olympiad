@@ -1,5 +1,21 @@
 \subsection{Dalil Sinus dan Dalil Cosinus}
-    Misalkan $ABC$ adalah suatu segitiga dengan $R$ adalah panjang jari-jari lingkaran luarnya. Maka
+    Misalkan $ABC$ adalah suatu segitiga dengan $R$ adalah panjang jari-jari lingkaran luarnya.
+\begin{center}
+    \begin{tikzpicture}
+    \coordinate (O) at (0,0);
+    \coordinate (B) at (0:2cm);
+    \coordinate (A) at (210:2cm);
+    \coordinate (C) at (130:2cm);
+    
+    \draw (O) circle (2cm);
+    \draw (A) -- (B) -- (C) -- cycle;
+    \node[right] at (B) {$B$};
+    \node[below left] at (A) {$A$};
+    \node[above left] at (C) {$C$};
+    \node[above left] at (O) {$O$};
+    \draw (A) -- node[above]{$R$} (O);
+    \end{tikzpicture}
+\end{center}
     \subsubsection{Dalil Sinus}
     $$\dfrac{BC}{\sin \angle A} = \dfrac{CA}{\sin \angle B}= \dfrac{AB}{\sin \angle C} = 2R$$
     

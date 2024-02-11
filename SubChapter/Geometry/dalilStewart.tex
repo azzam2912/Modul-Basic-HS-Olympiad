@@ -1,6 +1,25 @@
 \subsection{Dalil Stewart}
     Pada segitiga $ABC$ dengan titik $D$ pada segmen $BC$, dimana $AB=c, BC=a, CA=b, AD=d, BD=m, CD=n$, maka berlaku
-    $$BC \cdot AD^2 + BC \cdot BD \cdot CD = CA^2 \cdot BD + AB^2 \cdot CD$$
-    atau $$ad^2+amn = b^2m+c^2n.$$
-
+    \begin{align*}
+        BC \cdot AD^2 + BC \cdot BD \cdot CD &= CA^2 \cdot BD + AB^2 \cdot CD\\
+        ad^2+amn &= b^2m+c^2n
+    \end{align*}
+\begin{center}
+    \begin{tikzpicture}
+    % titik-titik segitiga
+    \coordinate[label=left:$C$]  (C) at (-1.5cm,-1.cm);
+    \coordinate[label=right:$B$] (B) at (1.5cm,-1.0cm);
+    \coordinate[label=above:$A$] (A) at (0.5cm,1.732cm);
+    % titik-titik cevian
+    \coordinate[label=below:$D$] (D) at ($(C)!0.3!(B)$);
+    
+    % pembuatan segitiga
+    \draw (A) -- node[right]{$c$} (B) -- node[above]{$m$} (D) -- node[above]{$n$} (C) -- node[left]{$b$} (A);
+    
+    
+    % pembuatan cevian
+    \draw (B) --node[below]{$a$}(C);
+    \draw (A) --node[right]{$d$}(D);
+    \end{tikzpicture}
+\end{center}
 \input{Soal/Geometry/dalilStewart}
