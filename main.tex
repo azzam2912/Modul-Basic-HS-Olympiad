@@ -1,5 +1,10 @@
 \documentclass[11pt]{scrartcl}
 \usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{angles,quotes}
+\usetikzlibrary{patterns}
+\usetikzlibrary{calc}
+\usepackage{tkz-euclide}
 \graphicspath{{./}}
 \usepackage[sexy]{evan}
 \usepackage[normalem]{ulem}
@@ -10,7 +15,7 @@
     linkcolor=blue,
     filecolor=magenta,      
     urlcolor=cyan,
-    pdftitle={Overleaf Example},
+    pdftitle={Educational PDF by Azzam},
     pdfpagemode=FullScreen,
     }
 
@@ -22,28 +27,13 @@
 % \addtolength{\topmargin}{-0.2in}
 % \addtolength{\textheight}{1in} 
 
+\setlength{\parindent}{0pt}
+
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.15}
 \usepackage{mathrsfs}
 \usetikzlibrary{arrows}
 
-
-\title{Basic Lessons on Olympiad}
-\author{Azzam Labib Hakim}
-\date{Today}
-
 \begin{document}
-\maketitle
-
-% rencananya daftar isi
-
-%Basic 1
-\input{Basic 1/Basic 1 modul.tex}
-
-%Basic 2
-\input{Basic 2/Basic 2 Modul.tex}
-
-%Basic 3
-\input{Basic 3/Basic 3 Modul.tex}
-
+\input{High/high3}	
 \end{document}

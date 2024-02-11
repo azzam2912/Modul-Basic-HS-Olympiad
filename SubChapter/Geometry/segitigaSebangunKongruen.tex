@@ -1,0 +1,81 @@
+\subsection{Kesebangunan Segitiga}
+\begin{center}
+\begin{tikzpicture}
+  % First triangle
+  \coordinate (A) at (0,0);
+  \coordinate (B) at (3,0);
+  \coordinate (C) at (2,2);
+  \draw (A) -- (B) -- (C) -- cycle;
+
+  % Second triangle
+  \coordinate (D) at (6,0);
+  \coordinate (E) at (12,0);
+  \coordinate (F) at (8,4);
+  \draw (D) -- (E) -- (F) -- cycle;
+
+  % Labeling the vertices
+  \node[below] at (A) {$A$};
+  \node[below] at (B) {$B$};
+  \node[above] at (C) {$C$};
+  \node[below] at (D) {$D$};
+  \node[below] at (E) {$E$};
+  \node[above] at (F) {$F$};
+
+  \draw pic[draw=green!30,fill=green!30,angle radius=0.5cm] {angle=A--C--B};
+  \draw pic[draw=green!30,fill=green!30,angle radius=0.5cm] {angle=D--F--E};
+  \draw pic[draw=red!30,fill=red!30,angle radius=0.5cm] {angle=B--A--C};
+  \draw pic[draw=red!30,fill=red!30,angle radius=0.5cm] {angle=F--E--D};
+  \draw pic[draw=blue!30,fill=blue!30,angle radius=0.5cm] {angle=C--B--A};
+  \draw pic[draw=blue!30,fill=blue!30,angle radius=0.5cm] {angle=E--D--F};
+\end{tikzpicture}
+\end{center}
+
+
+
+Segitiga $ABC$ dan $DEF$ sebangun atau $ABC \sim DEF$ jika dan hanya jika minimal salah satu syarat ini terpenuhi:
+\begin{enumerate}
+    \item $\angle ABC = \angle DEF$ dan $\angle BAC = \angle EDF$.
+    \item $\dfrac{AB}{DE} = \dfrac{BC}{EF} = \dfrac{CA}{FD}$.
+    \item $\dfrac{AB}{DE} = \dfrac{BC}{EF}$ dan $\angle ABC = \angle DEF$ (sudut yang diapit dua sisi yang diperbandingkan nilainya sama)
+\end{enumerate}
+
+\subsection{Kekongruenan Segitiga}
+\begin{center}
+\begin{tikzpicture}
+  % First triangle
+  \coordinate (A) at (0,0);
+  \coordinate (B) at (3,0);
+  \coordinate (C) at (2,2);
+  \draw (A) -- (B) -- (C) -- cycle;
+
+  % Second triangle
+  \coordinate (D) at (6,0);
+  \coordinate (E) at (9,0);
+  \coordinate (F) at (7,2);
+  \draw (D) -- (E) -- (F) -- cycle;
+
+  % Labeling the vertices
+  \node[below] at (A) {$A$};
+  \node[below] at (B) {$B$};
+  \node[above] at (C) {$C$};
+  \node[below] at (D) {$D$};
+  \node[below] at (E) {$E$};
+  \node[above] at (F) {$F$};
+
+  \draw pic[draw=green!30,fill=green!30,angle radius=0.5cm] {angle=A--C--B};
+  \draw pic[draw=green!30,fill=green!30,angle radius=0.5cm] {angle=D--F--E};
+  \draw pic[draw=red!30,fill=red!30,angle radius=0.5cm] {angle=B--A--C};
+  \draw pic[draw=red!30,fill=red!30,angle radius=0.5cm] {angle=F--E--D};
+  \draw pic[draw=blue!30,fill=blue!30,angle radius=0.5cm] {angle=C--B--A};
+  \draw pic[draw=blue!30,fill=blue!30,angle radius=0.5cm] {angle=E--D--F};
+
+    \tkzMarkSegment[pos=.5,mark=|](C,B)
+    \tkzMarkSegment[pos=.5,mark=|](D,F)
+    \tkzMarkSegment[pos=.5,mark=||](C,A)
+    \tkzMarkSegment[pos=.5,mark=||](E,F)
+    \tkzMarkSegment[pos=.5,mark=|||](B,A)
+    \tkzMarkSegment[pos=.5,mark=|||](E,D)
+\end{tikzpicture}
+\end{center}
+
+Sedangkan $ABC$ dan $DEF$ dikatakan kongruen atau $\triangle ABC \cong \triangle DEF$ jika dan hanya jika $AB=DE, BC=EF, CA=FD$ atau dengan kata lain kedua segitiga tersebut sebangun dan ada salah satu sisi dari kedua segitiga tersebut yang panjangnya sama. Simpelnya kongruen = sama persis.

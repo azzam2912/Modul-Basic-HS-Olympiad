@@ -1,0 +1,11 @@
+\subsubsection{Persamaan Karakteristik untuk Relasi Rekurensi Linear}
+Persamaan karakteristik berikut berlaku untuk persamaan rekursif yang linear. Persamaan karakteristik berikut berguna untuk mengubah relasi rekurensi menjadi iteratif, atau persamaan berbentuk implisit. (Jadi, untuk persamaan yang bukan linear, sebagai contoh $a_n = a_{n-1}^2 + a_{n-2}$ tidak bisa dijamin selesai dengan persamaan karakteristik yang disajikan berikut).
+Untuk persamaan rekursif
+$$a_n = c_1a_{n-1}+c_2a_{n-2}+\dots+c_da_{n-d}$$
+mempunyai persamaan karakteristik
+$$x^d-c_1x^{d-1}-c_2x^{d-2}-\dots-c_dx^0=0$$
+
+Sebagai contoh, rumus rekursif dari barisan Fibonacci di atas dapat diselesaikan menjadi 
+$$x^{n}-x^{n-1}-x^{n-2}=0 \implies x^2-x-1=0$$
+yang mempunyai dua akar, yaitu $x_1 = \dfrac{1+\sqrt{5}}{2}=\phi$ dan $x_2 = \dfrac{1-\sqrt{5}}{2}=1-\phi$ dimana $\phi$ adalah \textit{Golden Ratio}. Sadari bahwa setiap suku di barisan Fibonacci tersebut berbentuk $F_n = c_1x_1^n + c_2x_2^n$ (buktikan). Dengan substitusi $x_1$ dan $x_2$ serta pemilihan suku dari barisan Fibonacci (misal suku pertama dan kedua) maka akan ditemukan nilai $c_1$ dan $c_2$ sehingga pada akhirnya kita punya
+$$F_n=\dfrac{\phi^n-(1-\phi)^n}{\sqrt{5}}$$

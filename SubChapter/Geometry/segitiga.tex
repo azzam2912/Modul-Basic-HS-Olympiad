@@ -1,0 +1,72 @@
+\subsection{Segitiga}
+Pada segitiga $ABC$ seperti gambar berikut:
+\begin{center}
+\begin{tikzpicture}
+    % Define the coordinates of the vertices
+    \coordinate (A) at (0,0);
+    \coordinate (B) at (8,0);
+    \coordinate (C) at (1.5,4);
+    
+    % Draw the triangle
+    \draw (A) -- (B) -- (C) -- cycle;
+    
+    % circumcircle
+    \tkzCircumCenter(A,B,C)\tkzGetPoint{O}
+    \tkzDrawPoint(O)
+    \tkzDrawCircle(O,A)
+    
+    % incircle
+    \tkzDefCircle[in](A,B,C)\tkzGetPoint{I}\tkzGetLength{rIN}
+    \tkzDrawPoint(I)
+    \tkzDrawCircle[R](I,\rIN pt)
+    
+    % angle bisector
+    \tkzDrawBisector[blue](B,A,C)\tkzGetPoint{E}
+    \tkzDrawCircle[R](E,1 pt)
+    
+    %altitude
+    \tkzDefPointBy[projection=onto B--C](A) \tkzGetPoint{D}
+    \tkzDefPointBy[projection=onto B--A](C) \tkzGetPoint{C1}
+    \tkzInterLL(A,D)(C,C1) \tkzGetPoint{H}
+    \tkzDrawPoints(H) \tkzLabelPoints[below right](H)
+    \tkzDrawSegment[red](A,D)
+    \tkzDrawSegment[red](C,C1)
+
+    %garis sumbu
+    \tkzDefPointBy[projection=onto B--C](O) \tkzGetPoint{M}
+    \tkzDefPointBy[homothety=center O ratio 3.2](M) \tkzGetPoint{M1}
+    \tkzDefPointBy[homothety=center O ratio -3.2](M) \tkzGetPoint{M2}
+    \tkzDrawSegment(M1,M2)
+    \tkzDefPointBy[projection=onto B--A](O) \tkzGetPoint{M3}
+
+    %centroid
+    \tkzDrawSegment[green](A,M)
+    \tkzDrawSegment[green](C,M3)
+    \tkzInterLL(A,M)(C,M3) \tkzGetPoint{G}
+    \tkzDrawPoints(G) \tkzLabelPoints[below right](G)
+    
+    % Label the vertices
+    \node[below left] at (A) {$A$};
+    \node[below right] at (B) {$B$};
+    \node[above] at (C) {$C$};
+    \node[below right] at (I) {$I$};
+    \node[right] at (O) {$O$};
+    \node[above right] at (E) {$E$};
+    \node[above] at (D) {$D$};
+    \node[right] at (M) {$M$};
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}
+    \item Garis bagi $AE$ yaitu garis yang membagi dua sudut $A$ sama besar sehingga $\angle BAE = \angle EAC$. 
+    \item Garis berat $AM$ dengan $M$ adalah titik tengah $BC$.
+    \item Garis tinggi $AD$ adalah garis yang tegak lurus dengan $BC$. $D$ biasa disebut dengan proyeksi $A$ ke $BC$.
+    \item Garis $OM$ adalah salah satu garis sumbu segitiga $ABC$, yaitu garis yang melewati titik tengah sisi segitiga dan tegak lurus dengan sisi itu.
+    \item Pertemuan atau perpotongan ketiga garis tinggi segitiga $ABC$ adalah titik tinggi, dalam gambar ini adalah $H$ (orthocenter).
+    \item Pertemuan atau perpotongan ketiga garis bagi segitiga $ABC$ adalah titik bagi atau titik pusat lingkaran dalam (incircle) segitiga $ABC$ dalam gambar ini adalah $I$ (incenter).
+    \item Pertemuan atau perpotongan ketiga garis berat segitiga $ABC$ adalah titik berat (centroid).
+    \item Pertemuan atau perpotongan ketiga garis sumbu segitiga $ABC$ adalah titik pusat lingkaran luar (circumcircle) segitiga $ABC$ yang dalam gambar ini adalah $O$ (circumcenter).
+    \item Berlaku \textbf{ketaksamaan segitiga} yaitu $AB+BC>CA$, $BC+CA>AB$, dan $CA+AB>BC$. Selain itu juga berlaku $|AB-BC|<CA$, $|BC-CA|<AB$, dan $|CA-AB|<BC$.
+\end{enumerate}
+\input{SubChapter/Geometry/segitigaSebangunKongruen}
+
+\input{Soal/Geometry/segitigaSebangunKongruen}

@@ -1,0 +1,920 @@
+\documentclass[11pt]{scrartcl}
+\usepackage{graphicx}
+\graphicspath{{./}}
+\usepackage[sexy]{evan}
+\usepackage[normalem]{ulem}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\hypersetup{
+ colorlinks=true,
+ linkcolor=blue,
+ filecolor=magenta,      
+ urlcolor=cyan,
+ pdftitle={Overleaf Example},
+ pdfpagemode=FullScreen,
+ }
+ 
+ \usepackage{listings}
+ \usepackage{xcolor}
+ \lstset { %
+   language=C++,
+   backgroundcolor=\color{black!5}, % set backgroundcolor
+   %basicstyle=\footnotesize,% basic font setting
+ }
+
+\renewcommand{\baselinestretch}{1.5}
+
+\addtolength{\oddsidemargin}{-0.4in}
+\addtolength{\evensidemargin}{-0.4in}
+\addtolength{\textwidth}{0.8in}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+
+\setlength{\parindent}{0cm}
+
+
+\begin{document}
+	\title{Handout Basic Programming and Algorithm} % Beginner
+	\date{\today}
+	\author{Azzam L. H.}
+	\maketitle
+	\noindent
+	\section{Referensi dan Situs Utama untuk Latihan}
+	\begin{enumerate}
+	\item Belajar programming dasar: \url{https://tlx.toki.id/courses/basic}
+	\item Latihan pemrograman kompetitif: \url{https://tlx.toki.id/courses/competitive}
+	\item Belajar materi pemrograman kompetitif: \url{https://osn.toki.id/data/pemrograman-kompetitif-dasar.pdf}
+	\end{enumerate}
+	
+	\section{Kerangka Dasar Syntax Pemrograman C++ untuk Olimpiade}
+	\begin{lstlisting}
+		#<bits/stdc++.h>
+		#include <iostream>
+		#include <cmath>
+		
+		#define PI 3.14159 // Define a constant value for PI
+		
+		using namespace std;
+		
+		int main() {
+		   // Variable initialization
+		   int x, y;
+		   double radius;
+				
+		   // Input
+		   cout << "Enter the value of x: ";
+		   cin >> x;
+				
+		   cout << "Enter the value of y: ";
+		   cin >> y;
+				
+		   cout << "Enter the radius: ";
+		   cin >> radius;
+				
+		   // While loop
+		   while (x < y) {
+		       cout << "x is " << x << endl;
+		       x++;
+		   }
+				
+		   // For loop
+		   for (int i = 0; i < 5; i++) {
+		       cout << "i is " << i << endl;
+		   }
+				
+		   // If-else statement
+		   if (x > y) {
+		       cout << "x is greater than y" << endl;
+		   } else if (x < y) {
+		       cout << "x is smaller than y" << endl;
+		   } else {
+				    	cout << "x is equal to y" << endl;
+		   }
+				
+		   // Use PI constant
+		   double circumference = 2 * PI * radius;
+		   cout << "The circumference is " << circumference << endl;
+				
+		   return 0;
+		}
+		\end{lstlisting}
+	
+	\section{Bilangan Prima}
+	Bilangan prima adalah bilangan asli yang hanya dapat dibagi dirinya sendiri dan angka 1. 
+	    
+	 Bilangan bukan prima dan bukan 1 disebut bilangan komposit.
+	 
+	 1 bukan bilangan prima dan bukan pula bilangan komposit. 
+	 
+	 Untuk bilangan prima $p$ dan bilangan bulat $n$.
+	 \begin{enumerate}
+	     \item Bilangan prima genap hanya ada satu buah, yaitu 2.
+	     \item Dari definisi bilangan prima $p$, karena $p$ tak terbagi oleh $2$ dan $5$, maka tak ada bilangan prima yang berakhiran $0$.
+	     \item Untuk sembarang bilangan prima $p$ selalu berlaku $p \mid n$ atau $gcd(p,n)=1$ untuk suatu bilangan bulat $n$.
+	     \item $p \mid n^2$ jika dan hanya jika $p \mid n$.
+	     \item $p \mid ab \iff p \mid a \text{ atau } p \mid b$.
+	     \item Untuk $p > 3$, kita punya bentuk $p = 6k \pm 1$ untuk suatu bilangan asli $k$.
+	     \item Untuk seluruh faktor prima $t$ dari bilangan komposit $n$ selalu berlaku $t \le \sqrt{n}$.
+	  \end{enumerate}
+	  
+	\subsection{Algoritma Untuk Mengecek Bilangan Prima}
+	\subsubsection{Naive}
+	\begin{lstlisting}
+	bool isPrime(int n)
+	{
+		// https://www.geeksforgeeks.org/prime-numbers/
+	    // Corner case
+	    if (n <= 1)
+	        return false;
+	 
+	    // Check from 2 to n-1
+	    for (int i = 2; i < n); i++)
+	        if (n % i == 0)
+	            return false;
+	    return true;
+	}
+	\end{lstlisting}
+	
+	\subsubsection{Better Naive}
+	\begin{lstlisting}
+		bool isPrime(int n)
+		{
+			// https://www.geeksforgeeks.org/prime-numbers/
+		    // Corner case
+		    if (n <= 1)
+		        return false;
+		 
+		    // Check from 2 to square root of n
+		    for (int i = 2; i <= sqrt(n); i++)
+		        if (n % i == 0)
+		            return false;
+		    return true;
+		}
+		\end{lstlisting}
+	
+	\subsection{Prime Generating Algorithm}
+	\subsubsection{Sieve of Eratosthenes}
+	\begin{lstlisting}
+	// modified from https://www.geeksforgeeks.org/sieve-of-eratosthenes/
+	int[] SieveOfEratosthenes(int n)
+	{
+	    // Create a boolean array
+	    // "prime[0..n]" and initialize
+	    // all entries it as true.
+	    // A value in prime[i] will
+	    // finally be false if i is
+	    // Not a prime, else true.
+	    bool prime[n + 1];
+	    memset(prime, true, sizeof(prime));
+	 
+	    for (int p = 2; p * p <= n; p++)
+	    {
+	        // If prime[p] is not changed,
+	        // then it is a prime
+	        if (prime[p] == true)
+	        {
+	            // Update all multiples
+	            // of p greater than or
+	            // equal to the square of it
+	            // numbers which are multiple
+	            // of p and are less than p^2
+	            // are already been marked.
+	            for (int i = p * p; i <= n; i += p)
+	                prime[i] = false;
+	        }
+	    }
+	}
+	\end{lstlisting}
+	
+	
+  	\section{FPB dan KPK dua bilangan}
+	 Secara matematis FPB (atau gcd - greatest common divisors) dan KPK (atau lcm - least common multiples) dari dua bilangan bulat positif $a$ dan $b$ 
+	 didefinisikan sebagai:
+	 $$FPB(a,b) = gcd(a,b) = p_1^{\min\{a_1,b_1\}}\cdot p_2^{\min\{a_2,b_2\}} \cdot \ldots \cdot p_n^{\min\{a_n,b_n\}}$$
+	 $$KPK(a,b) = lcm(a,b) =p_1^{\max\{a_1,b_1\}}\cdot p_2^{\max\{a_2,b_2\}} \cdot \ldots \cdot p_n^{\max\{a_n,b_n\}}$$
+	 dimana kedua bilangan tersebut dapat difaktorisasi prima menjadi
+	 $a=p_1^{a_1}\cdot p_2^{a_2}\cdot \ldots \cdot p_n^{a_n}$ dan $b=p_1^{b_1}\cdot p_2^{b_2} \cdot \ldots \cdot p_n^{b_n}$, dengan $p_1,p_2,\dots,p_n$ adalah bilangan prima berbeda, serta $a_1,a_2,\dots,a_n,b_1,b_2,\dots,b_n$ adalah bilangan bulat non-negatif.
+	 
+	 Dari definisi tersebut mudah dibuktikan bahwa
+	 $$FPB(a,b) \cdot KPK(a,b) = ab.$$
+	 
+	 Perlu dicatat, bahwa $a$ dan $b$ tidak boleh bernilai nol. Untuk $a,b$ yang bernilai negatif, didefinisikan $FPB(a,b) = FPB(|a|,|b|)$.
+	 
+	 \subsection{Algoritma Naive}
+	 Mencari seluruh faktor i yang mungkin secara mundur dari $m = min(a,b)$ sampai 1, lalu return $FPB$ nya jika ternyata $i \mid a$ dan $i \mid b$ nya. Kompleksitasnya adalah $O(m)$
+	 
+	 \begin{lstlisting}
+	 int naiveGCD(int a, int b){
+	   int m = min(a,b);
+	   int gcd = 1;
+	   for(int i = m; i > 0; --i){
+	     if((a % i == 0) && (b % i == 0)){
+	       gcd = i;
+	       return gcd;
+	     }
+	   }
+	 \end{lstlisting}
+	 
+	 
+	 \subsection{Algoritma Euclidean}
+	 Pada dasarnya algoritma ini bertumpu pada sebuah teorema:
+	 $$FPB(a,b) = FPB(a,b-a)$$
+	 
+	 Jika teorema di atas dilakukan berkali-kali, maka secara umum akan didapat
+	 $$FPB(a,b) = FPB(b\mod a , a)$$
+	 
+	 \begin{lstlisting}
+	 // algoritma secara iteratif
+	 int euclideanGCD(int a, int b) {
+	   	while(a > 0) {
+	   		int temp = a;
+	   		a = b % a;
+	   		b = temp;
+	 	}
+	 	return b;
+	 }
+	 \end{lstlisting}
+	
+	\begin{lstlisting}
+	// algoritma secara rekursif
+	int euclideanGCD(int a, int b) {
+	    if (a == 0) {
+	        return b;
+	    }
+	    return euclideanGCD(b % a, a);
+	}
+	\end{lstlisting}
+	
+	\subsection{Algoritma Mencari KPK}
+	Dari sifat $FPB(a,b) \cdot KPK(a,b) = ab$, maka
+	 \begin{lstlisting}
+	 // fungsi yang menghitung KPK dari dua bilangan
+	 int lcm(int a, int b) {
+		 	// fungsi gcd  dapat memakai naive atau euclidean
+		 	return (a * b) / gcd(a, b); 
+	 }
+	 \end{lstlisting}
+	 
+	  \section{Fungsi yang Melibatkan Faktor Bilangan}
+	     Misalkan $a$ dapat difaktorisasi prima seperti sebelumnya yaitu $a=p_1^{a_1}\cdot p_2^{a_2}\cdot \ldots \cdot p_n^{a_n}$.
+	     \subsection{Banyaknya Faktor Positif}
+	     Fungsi $d(a)$ didefinisikan sebagai banyaknya faktor atau pembagi positif dari $a$ dengan
+	     $$d(a) = (a_1+1)(a_2+1)\cdot \ldots \cdot (a_n+1).$$
+	     
+	     Contoh: Banyaknya faktor positif dari $12= 2^2 \cdot 3^1$ adalah $d(12)=(2+1)(1+1)=6$ dengan pembagi positifnya adalah $1,2,3,4,6,12$ (ada 6 faktor positif.)
+	     
+	     \subsection{Jumlah Faktor Positif}
+	     Fungsi $\sigma (a)$ didefinisikan sebagai banyaknya faktor atau pembagi positif dari $a$ dengan
+	     $$\sigma (a) = (p_1^0+p_1^1+p_1^2+\dots+p_1^{a_1})(p_2^0+p_2^1+p_2^2+\dots+p_2^{a_2})\cdot \ldots \cdot (p_n^0+p_n^1+p_n^2+\dots+p_n^{a_n}).$$
+	     
+	     Contoh: Jumlah faktor atau pembagi positif dari $12= 2^2 \cdot 3^1$ adalah $d(12)=(2^0+2^1+2^2)(3^0+3^1)=28$ yang setara dengan penjumlahan secara manualnya, yaitu $2^03^0+2^03^1+2^13^0+2^13^1+2^23^0+2^23^1=28.$
+	     
+	     \section{Uji habis dibagi}
+	         Trik yang suatu saat dapat membuat hidup anda bahagia wkwkwk. Semua rumus ini dapat dibuktikan dengan aritmatika modular.
+	         \begin{enumerate}
+	             \item Bilangan $x$ genap jika dan hanya jika digit terakhir $x$ genap.
+	             \item $3 \mid x$ jika dan hanya jika jumlah digit-digitnya habis dibagi $3$. Contohnya 2931 habis dibagi 3 karena $2+9+3+1=15$ habis dibagi 3.
+	             \item $9 \mid x$ jika dan hanya jika jumlah digit-digitnya habis dibagi $9$.
+	             \item $x$ habis dibagi 5 jika dan hanya jika digit terakhir $x$ adalah $0$ atau $5$.
+	             \item $x$ habis dibagi 11 jika dan hanya jika jumlah selang-seling (alternate sums) dari digit-digitnya habis dibagi 11. Contoh: 945351 habis dibagi 11 karena $9-4+5-3+5-1=11$ habis dibagi 11. 121 habis dibagi 11 karena $1-2+1=0$ habis dibagi 11.
+	         \end{enumerate}
+	         
+\section{Barisan dan Deret Aritmatika}
+    Barisan aritmatika in a nutshell: $a,a+b,a+2b,\dots$ dimana setiap \textbf{suku ke-$n$} dari barisan tersebut adalah $$a_n=a+(n-1)b$$ untuk suatu bilangan asli $n$ dan bilangan \textbf{real} $a,b$.
+    
+    Lalu, \textbf{rumus deret}nya atau jumlah $n$ suku pertama barisan tersebut adalah (coba buktikan rumus ini) $$S_n = a_1+a_2+\dots+a_n=a+(a+b)+(a+2b)+\dots+(a+(n-1)b)=\dfrac{n}{2}(2a+(n-1)b).$$
+    
+    \subsection{Barisan dan Deret Geometri}
+     Barisan geometri in a nutshell: $a,ar,ar^2,\dots$ dimana setiap \textbf{suku ke-$n$} dari barisan tersebut adalah $$a_n=ar^{n-1}$$ untuk suatu bilangan asli $n$ dan bilangan \textbf{real} $a$ dan $r \neq 0$.
+    
+    Lalu, \textbf{rumus deret}nya atau jumlah $n$ suku pertama barisan tersebut adalah (coba buktikan rumus ini) $$S_n = a_1+a_2+\dots+a_n=a+ar+ar^2+\dots+ar^{n-1}=\dfrac{a(1-r^n}{1-r}.$$
+    Perhatikan jika $-1 < r < 1$ maka saat $n \rightarrow \infty$ rumus deret tak hingganya menjadi (why?) $$S_\infty =  \dfrac{a}{1-r}.$$
+    
+    \subsection{Rumus Barisan dan Deret Lainnya}
+    Sangat dianjurkan untuk mencoba membuktikan rumus-rumus berikut. Untuk bilangan asli $n$, kita punya
+    \begin{enumerate}
+        \item $1+2+\dots+n = \dfrac{n(n+1)}{2}.$
+        \item $1^2+2^2+\dots+n^2 = \dfrac{n(n+1)(2n+1)}{6}.$
+        \item $1^3+2^3+\dots+n^3 = \left(1+2+\dots+n\right)^2= \left(\dfrac{n(n+1)}{2}\right)^2.$
+    \end{enumerate}
+    
+    \section{Basis Bilangan}
+        Basis bilangan adalah sistem bilangan yang menyatakan banyaknya digit atau kombinasi dari digit-digit yang menyatakan sebuah bilangan.
+        
+        Secara umum, bilangan $a$ dalam basis $n > 0$ yaitu $(a)_n$ mempunyai bentuk (yang setara dengan nilai basis 10):
+        $$(c_kc_{k-1}\dotsc_1c_0)_n = c_{k}n^k + c_{k-1}n^{k-1}+\dots+c_1n^{1}+c_0n^{0}$$
+        
+        Secara umum bahkan kita telah memakai sistem basis tersebut untuk basis 10. Misalkan 123 dapat dinyatakan sebagai $123 = 1\cdot 10^2 + 2\cdot 10^1 + 1\cdot 10^0$
+        
+        Lalu, berikut merupakan contoh untuk bilangan basis selain 10 misalnya: 
+        \begin{itemize}
+            \item Bilangan basis 2 atau bilangan biner yang digit-digitnya terdiri dari $\{0,1\}$. Misalkan $1001_2$ dalam biner yang setara dengan $9$ atau $1001_2 = 9$ karena $1001_2 = 1\cdot 2^3+0\cdot 2^2+0\cdot 2^1+1\cdot 2^0 = 9$. 
+            \item Bilangan basis 3 yang digit-digitnya terdiri dari $\{0,1,2\}$. Misalkan $211_3 = 22$ karena $211_3 = 2\cdot 3^2+ 1\cdot 3^1+ 1\cdot 3^0 = 22$.
+            \item Bilangan basis 16 atau heksadesimal yang digit-digitnya terdiri dari $\{0,1,2,\dots,9,A,B,\dots,F\}$. Misalkan $5F_{16} = 95$ karena $5F_{16} = 5 \cdot 16^1 + (15)\cdot 16^0 = 95$.
+        \end{itemize}
+        Berikut disajikan contoh program yang dapat mengkonversi bilangan bulat positif basis 10 ke biner
+        \begin{lstlisting}
+        int convertToBinary(int n){ // for positive integer only
+        	int result = 0;
+        	while(n > 0){
+        		result = 10 * result + (n % 2);
+        		n = n / 2;
+        	}
+        	return result;
+        }
+        \end{lstlisting}
+        Dan berikut program yang dapat mengkonversi bilangan biner bulat positif ke bilangan basis 10
+        \begin{lstlisting}
+        int convertFromBinary(int bin){ // for positive integer only
+                	int result = 0;
+                	int exponent = 1;
+                	while(bin > 0){
+                		result += (bin % 10)*exponent;
+                		bin = bin / 10;
+                		exponent = exponent * 2;
+                	}
+                	return result;
+        }
+        \end{lstlisting}
+    
+    \section{Latihan Soal}
+	\begin{enumerate}	
+	\item Berapa banyak bilangan bulat antara 1 sampai dengan 100 yang habis dibagi 3 atau 5?
+	\item Berapa banyak bilangan bulat antara 1 sampai dengan 100 yang tidak habis dibagi 3 atau tidak 
+	habis dibagi 5?
+	\item (OSK 2018) Jika $FPB(a,2008)=251$. Jika $a < 4036$, maka nilai terbesar untuk $a$ adalah
+	\item (OSK 2019)  Bilangan ajaib adalah bilangan yang memiliki jumlah faktor yang menyisakan 1 apabila dibagi 4, sebagai 
+	contoh adalah angka 1, 1 memiliki 1 buah faktor (yaitu 1). Untuk kesekian kalinya, Pak Dengklek ingin 
+	meminta tolong kalian untuk menghitung ada berapa banyak bilangan ajaib yang berada diantara 1 dan 
+	300 inklusif. Ada berapakah bilangan ajaib yang ingin diketahui pak Dengklek? 
+	\item (OSK 2019) Bilangan Harshad didefinisikan sebagai bilangan yang habis dibagi oleh hasil penjumlahan setiap digit 
+	dari bilangan itu sendiri. Contohnya bilangan 18, karena 18 habis dibagi oleh 9. Ada berapa banyak 
+	bilangan Harshad dari 1 sampai 50? 
+	\item (OSK Matematika 2010) Nilai $n$ terkecil sehingga $\underbrace{20102010\dots2010}_\text{$n$ buah 2010}$ habis dibagi 99 adalah \dots
+	
+	\textbf{(Modifikasi OSK 2017) Perhatikan potongan kode berikut untuk 2 soal selanjutnya:}
+	\begin{lstlisting}
+	long n, temp;
+	cin >> n;
+	while(n >= 10) {
+		temp = 1;
+		while(n > 0) {
+			temp = temp * (n % 10);
+			n = n / 10;
+		}
+		n = temp;
+	}
+	\end{lstlisting}
+	\item Berapakah nilai akhir $n$, jika nilai $n$ pada awalnya adalah 62792912?
+	\item Berapakah nilai akhir $n$, jika nilai $n$ pada awalnya adalah 14934976?
+	
+	\item Perhatikan potongan kode berikut!
+		 \begin{lstlisting}
+		 int batu(int x, int y) {
+		 	if(x == 0) {
+		 		return y;
+		 	} else {
+		 		return batu(y % x, x);
+		 	}
+		 }
+		 int kertas(int n) {
+		 	int ans = 0;
+		 	for(int i = 1; i <= n; i++) {
+		 		for(int j = 1; j <= i; j++) {
+		 			if(batu(i,j) == 1) {
+		 				ans += n / i;
+		 			}
+		 		}
+		 	}
+		 	return ans;
+		 }
+		 \end{lstlisting}
+		 Nilai  kembalian dari pemanggilan fungsi \verb*|kertas(100)| adalah \dots
+		 
+	\item (Modifikasi OSP 2008) Perhatikan potongan kode berikut
+	\begin{lstlisting}
+	int a;
+	cin >> a ;
+	int b = 4;
+	while(a > 0) {
+		b = b + (a % 10);
+		a = a / 10;
+	}
+	if(((b % 3) > 0) || ((b % 9) > 0)){
+		cout << "Angin bertiup\n";
+	} 
+	else {
+		cout << "Angin semilir\n";
+	} 
+	\end{lstlisting}
+	Berapakah nilai \verb*|a| yang akan menghasilkan keluaran "Angin semilir" ?
+	
+	\item (Modifikasi OSP 2006) Diberikan potongan program berikut
+	\begin{lstlisting}
+	void z(int t) {
+		int k, j;
+		k = 1;
+		while(k < t) {
+			j = 1;
+			while(j < 100) {
+				cout << "*";
+				j = j + 10;
+			}
+			k = k + 1;
+		}
+	}
+	\end{lstlisting}
+	Dengan suatu harga pada variabel N dan 
+	memanggil \verb*|z(N)| maka jumlah karakter \verb*|*|
+	yang akan dicetak sebagai fungsi dari $N$:
+	(dengan $c$ adalah suatu bilangan konstan 
+	positif)
+	\begin{enumerate}[a)]
+	\item $\floor{N/10}$
+	\item $(\floor{c \log N})^2$
+	\item $cN$
+	\item $\floor{c \log N}$
+	\item $N \floor{c \log N}$
+	\end{enumerate}
+	
+	\textbf{(Modifikasi OSP 2008) Perhatikan potongan kode program berikut  untuk menjawab dua pertanyaan berikutnya}
+	\begin{lstlisting}
+	int i,j,k,x,y;
+	cin >> x ;
+	i = 0;
+	y = 0;
+	while (i < x) {
+		for(j = 0; j <= i; j++) {
+			y = y + 2 * i;
+		}
+		i = i + 1;
+	}
+	for(k = 0; k <= y; i++){
+		cout << 'a';
+	}
+	\end{lstlisting}
+	\item Berapakah $y$ yang dihasilkan di akhir program jika $x$ adalah 3?
+	\begin{enumerate}[a)]
+	\item 13
+	\item 14
+	\item 15
+	\item 16
+	\item 17
+	\end{enumerate}
+	
+	\item Berapakah nilai $x$ minimum yang diperlukan 
+	supaya di layar tertulis yang lebih dari 80 huruf 
+	$'a'$ di akhir program?
+	\begin{enumerate}[a)]
+		\item 2
+		\item 4
+		\item 5
+		\item 10
+		\item 15
+	\end{enumerate}
+	
+	\textbf{(Modifikasi OSP 2008)Untuk dua pertanyaan berikutnya, perhatikanlah potongan kode berikut}
+	\begin{lstlisting}
+	int k;
+	k = 1;
+	for(int i=1; i < 5; i++){
+		k = k * i;
+		for(int j =  i + 1; j <= 2*i; j++) {
+			k += j;
+		}
+	}
+	cout << abs(k) << endl;
+	\end{lstlisting}
+	\item Keluaran dari program di atas adalah \dots
+	\begin{enumerate}[a)]
+		\item 242
+		\item 1250
+		\item 54
+		\item 1
+		\item 7557
+	\end{enumerate}
+	
+	\item Agar program menghasilkan keluaran minimum, 
+	nilai $k$ harus diinisialisasi dengan \dots
+		\begin{enumerate}[a)]
+			\item 0
+			\item -1
+			\item -9
+			\item -10
+			\item -11
+		\end{enumerate}
+		
+	\item (Modifikasi OSK 2018) Diberikan potongan program sebagai berikut:
+	\begin{lstlisting}
+	int kancil, panda, j;
+	for(int i = 2; i <= 100; i++) {
+		j = 1;
+		kancil = 0;
+		while(j <= i) {
+			if(i % j == 0) kancil++;
+			j++;
+		}
+		if(kancil == 2) panda++;
+	}
+	cout << panda;
+	\end{lstlisting}
+\begin{enumerate}[a)]
+			\item 10
+			\item 15
+			\item 25
+			\item 30
+			\item 40
+	\end{enumerate}
+	
+\item (Modifikasi OSP 2008) Perhatikan kode berikut:
+	\begin{lstlisting}
+	bool tes1(int n) {
+		bool ok;
+		ok = true;
+		for(int i = 2; i <= trunc(n)+1; i++){
+			if(n % i == 0) ok = false;
+		}
+		return ok;
+	}
+	\end{lstlisting}
+	Manakah pemanggilan yang menghasilkan false?
+	\begin{enumerate}[a)]
+	\item tes1(43)
+	\item tes1(51)
+	\item tes1(53)
+	\item tes1(59)
+	\item tes1(67)
+	\end{enumerate}
+	
+\item (Modifikasi OSP 2008) Perhatikan kode berikut:
+	\begin{lstlisting}
+	bool tes2(int n) {
+		bool ok = true;
+		int j = 0;
+		for(int i = 1; i <= n/2; i++){
+			if(n % i == 0) j += i * 2;
+		}
+		return (j == 2*n);
+	}
+	\end{lstlisting}
+	Manakah pemanggilan yang menghasilkan false?
+	\begin{enumerate}[a)]
+	\item tes2(12)
+	\item tes2(24)
+	\item tes2(28)
+	\item tes2(29)
+	\item tes2(36)
+	\end{enumerate}
+	
+	\item (Modifikasi OSP 2008) Perhatikan potongan fungsi berikut:
+	\begin{lstlisting}
+	bool tes3(int n, int m){
+		int i, j, tmp;
+		tmp = n;
+		i = 0;
+		while(tmp > 0){
+			if(tmp % 2 == 1) i++;
+			tmp = tmp / 2;
+		}
+		tmp = m;
+		j = 0;
+		while(tmp > 0){
+			if(tmp % 2 == 1) j++;
+			tmp = tmp / 2;
+		}
+		return (i == j);
+	}
+	\end{lstlisting}
+	Manakah yang menghasilkan true?
+	\begin{enumerate}[a)]
+	\item tes3(99,100)
+	\item tes3(100,120)
+	\item tes3(56,121)
+	\item tes3(89,156)
+	\item tes3(90,173)
+	\end{enumerate}
+	
+	\textbf{(Modifikasi OSP 2008)Untuk dua pertanyaan berikutnya, perhatikanlah potongan kode berikut}
+		\begin{lstlisting}
+		int sum(int n){
+			if(n>0) return n + sum(n-1);
+			else {
+				sum = n;
+			}
+			
+		}
+		\end{lstlisting}
+		\item Hasil dari \verb*|sum(11)| adalah \dots
+		\begin{enumerate}[a)]
+			\item 55
+			\item 66
+			\item 11
+			\item 78
+			\item 91
+		\end{enumerate}
+		
+		\item Agar keluaran fungsi \verb*|sum(n) > 100|, 
+		berapakah harga \verb*|n| terkecil?
+			\begin{enumerate}[a)]
+				\item 11
+				\item 12
+				\item 13
+				\item 14
+				\item 15
+			\end{enumerate}
+			
+		\textbf{(Modifikasi OSP 2008) Untuk tiga pertanyaan berikutnya perhatikanlah kode program lengkap sebagai berikut:}
+		\begin{lstlisting}
+		#include <iostream>
+		using namespace std;
+		
+		int hitung(int i){
+			int j = 1, hasil = 0;
+			while(j <= i) {
+				hasil += j;
+				j++;
+			}
+			return hasil;
+		}
+		
+		int main (){
+			int x = -1;
+			int y = 4;
+			cin >> z;
+			cout << hitung(x) << endl;
+			int t = hitung(y);
+			for(int i = 15; i >= t; i--) {
+				cout << "y";
+			}	
+			cout << "\n";
+			if(hitung(z) > 0){
+				for(int i = 1; i <= z; i++) {
+					for(int k = 1; k <= i; i++) {
+						cout << "*";
+					}
+				}
+			}
+		}
+		\end{lstlisting}
+		\item Angka berapakah yang pertama kali tertulis di 
+		layar, jika program tersebut berhasil dijalankan?
+		\item Berapa banyakah huruf "y" yang akan tertulis di 
+		layar?
+		\item Berapakah z yang harus dimasukkan pengguna 
+		untuk menuliskan 15 karakter "*" di layar? 
+	\end{enumerate}
+	     
+	\section{Relasi Rekurensi atau Rekursif}
+		    Sering disebut dengan rekursif. Intinya adalah sebuah persamaan yang melibatkan barisan $a_1, a_2, \dots , a_n$ dimana untuk mendapatkan nilai $a_k$ membutuhkan suku-suku sebelumnya $a_{k-1}, a_{k-2}, \dots,$ atau $a_1$. 
+		    
+		    \subsection{Barisan Fibonacci}
+		    Contoh paling terkenal dari persamaan rekursif adalah bilangan Fibonacci $0,1,1,2,3,5,8,13,21,\dots$ yang secara matematis bilangan Fibonacci ke-$n$ atau $F_n$ didefinisikan sebagai berikut.
+		    \begin{align*}
+		        F_0 &= 0, \hspace{20pt} F_1 = 1\\
+		        F_n &= F_{n-1}+F_{n-2} \text{ untuk } n \ge 2
+		    \end{align*}
+		    
+		    Berikut disajikan kode untuk mencari bilangan Fibonacci ke-$n$.
+		    \begin{lstlisting}
+		    int fibonacci(int n){
+		    	if(n == 0 || n == 1) return n;
+		    	return fibonacci(n-1) + fibonacci(n-2);
+		    }
+		    \end{lstlisting}
+		    
+		    Contoh yang lebih terkenal di ranah \textit{Computer Science} adalah permasalahan \textit{Tower of Hanoi} atau permasalahn menara Hanoi.
+		    \begin{remark*} 
+		    Disadur dari \url{https://id.wikipedia.org/wiki/Menara_Hanoi}, 
+		    menara Hanoi adalah sebuah permainan matematis atau teka-teki. Permainan ini terdiri dari tiga tiang dan sejumlah cakram dengan ukuran berbeda-beda yang bisa dimasukkan ke tiang mana saja. Permainan dimulai dengan cakram-cakram yang tertumpuk rapi berurutan berdasarkan ukurannya dalam salah satu tiang, cakram terkecil diletakkan teratas, sehingga membentuk kerucut.
+		    
+		    Tujuan dari teka-teki ini adalah untuk memindahkan seluruh tumpukan ke tiang yang lain, mengikuti aturan berikut:
+		    
+		    \begin{enumerate}
+		    \item Hanya satu cakram yang boleh dipindahkan dalam satu waktu.
+		    	    \item Setiap perpindahan berupa pengambilan cakram teratas dari satu tiang dan memasukkannya ke tiang lain, di atas cakram lain yang mungkin sudah ada di tiang tersebut.
+		    	    \item Tidak boleh meletakkan cakram di atas cakram lain yang lebih kecil.
+		    \end{enumerate}
+		    \includegraphics[scale=0.5]{Towers-Of-Hanoi.png}\\
+		    Sumber gambar: \url{https://www.javainterviewpoint.com/tower-hanoi-java-recursion/}
+		    \end{remark*}
+		    Persamaan rekursifnya didefinisikan sebagai berikut dengan $T_n$ menotasikan banyaknya langkah yang diperlukan untuk memindahkan $n$ cakram.
+		    \begin{align*}
+		        T_1 &= 1 \\
+		        T_n &= 2T_{n-1}+1
+		    \end{align*}
+		    Berikut merupakan kode secara rekursif dari permasalahan Tower of Hanoi.
+		    \begin{lstlisting}
+		    int TowerOfHanoi(int n) {
+		    	if(n == 1){ 
+		    		return 1;
+		    	} else {
+		    		return 2*TowerOfHanoi(n-1) + 1;
+		    	}
+		    	
+		    }
+		    \end{lstlisting}
+		    
+		    
+		    Untuk menyelesaikan soal relasi rekurensi, butuh manipulasi aljabar yang mumpuni sehingga tidak ada pendekatan selain menggunakan persamaan karakteristik atau fungsi pembangkit (tidak dibahas disini) yang dijamin berhasil.
+		    
+		    
+		    
+		    \section{Dynamic Programming}
+		    Pada dasarnya Dynamic Programming atau \textbf{DP} adalah Relasi Rekursif , tetapi lebih efisien karena ditambah dengan konsep memoisasi (memoization).
+		    
+		    Konsep Dynamic Programming sendiri dibagi dua yaitu \textbf{Top-Down} dan \textbf{Bottom-Up}. Untuk materi lebih lanjut, silakan membaca Buku \href{https://ksn.toki.id/data/pemrograman-kompetitif-dasar.pdf}{Pemrograman Kompetitif Dasar} yang disediakan oleh TOKI.
+		    
+		    \subsection{Contoh Kasus Bilangan Fibonacci ke-n}
+		    Sebelumnya kita telah mendapatkan program yang mengembalikan bilangan Fibonacci secara rekursif 
+		    \begin{lstlisting}
+		    int fibonacci(int n){
+		    	if(n == 0 || n == 1) return n;
+		    	return fibonacci(n-1) + fibonacci(n-2);
+		    }
+		    \end{lstlisting}
+		    Ternyata solusi tersebut masih kurang bagus, karena masih ada beberapa fungsi yang dipanggil lebih dari sekali. Sebagai contoh misalkan kita ingin menghitung $F_4$. Maka urutan pemanggilannya adalah sebagai berikut:
+		    
+		    $F_4$:
+		    \begin{enumerate}
+		    \item $F_3$
+			    \begin{enumerate}[a)]
+			    \item $F_2$
+			    \begin{enumerate}[i)]
+			    \item $F_1$
+			    \item $F_0$
+			    \end{enumerate}
+			    \item $F_1$
+			    \end{enumerate}
+		    \item $F_2$
+		    		\begin{enumerate}[a)]
+		    	    \item $F_1$
+		    	    \item $F_0$
+		    	    \end{enumerate}
+		    \end{enumerate}	
+		    Perhatikan bahwa $F_2, F_1, F_0$ terpanggil lebih dari sekali. Tentu saja hal tersebut boros secara waktu dan resources komputasi karena seharusnya kalau kita sudah mendapatkan suatu bilangan Fibonacci, maka bilangan itu disimpan saja. 
+		    
+		    Proses penyimpanan tersebut yang dinamakan Memoization atau memoisasi yang merupakan konsep dasar dari DP.
+		    
+		    Berikut program yang mengembalikan Bilangan Fibonacci ke-$n$ menggunakan DP (Top-Down)
+		    \begin{lstlisting}
+		    // disadur dari https://www.geeksforgeeks.org/program-for-nth-fibonacci-number/
+		    int fib(int n)
+		    {
+		        // Declare an array to store
+		        // Fibonacci numbers.
+		        // 1 extra to handle
+		        // case, n = 0
+		        int f[n + 2];
+		        int i;
+		     
+		        // 0th and 1st number of the
+		        // series are 0 and 1
+		        f[0] = 0;
+		        f[1] = 1;
+		     
+		        for(i = 2; i <= n; i++)
+		        {
+		             
+		           //Add the previous 2 numbers
+		           // in the series and store it
+		           f[i] = f[i - 1] + f[i - 2];
+		        }
+		        return f[n];
+		        }
+		    };
+		    \end{lstlisting}
+		    
+		    \newpage
+		    \section{Latihan Soal}
+		    \begin{enumerate}
+		    \item Akan digunakan beberapa buah domino ukuran 2 $\times$ 1 atau 1 $\times$ 2 untuk dipasang di lantai ukuran 2 $\times$ n.
+		    Untuk mengisi lantai ukuran 2 $\times$ 1 ada 1 cara.
+		    Untuk mengisi lantai ukuran 2 $\times$ 2 ada 2 cara. Dan seterusnya.
+		    Berapa banyak cara untuk mengisi lantai ukuran 2 $\times$ 8 ?
+		    
+		    \item (KSN-K 2021) Seekor semut berada di bidang dimensi dua. Ketika berada di koordinat $(x,y)$, dia bisa 
+	 	    bergerak ke kanan $(x+1,y)$, kiri $(x-1,y)$, atas $(x,y+1)$, atau bawah $(x,y-1)$ dengan aturan 
+	 	    tertentu sesuai dengan tabel berikut:\\
+	 	    	\includegraphics[scale=0.5]{latsol1.png}\\
+	 	    Tabel tersebut menunjukkan aturan pergerakan semut tersebut. Baris menunjukkan 
+	 	    gerakan yang terakhir dilakukan sementara kolom menunjukkan ganjil/genapnya
+	 	    koordinat semut sekarang. Misalnya, jika sekarang berada di koordinat $(10,12)$ yaitu 
+	 	    (genap,genap) dan sebelumnya bergerak ke kiri dari $(11,12)$, maka gerakan selanjutnya 
+	 	    adalah ke bawah yaitu ke $(10,11)$. Jika semut tersebut ingin bergerak dari koordinat $(0,0)$
+	 	    ke koordinat $(1,-2)$, arah gerakan awal yang mungkin adalah ...
+	 	    
+	 	    \item (KSN-K 2021) Seekor semut berada di bidang dimensi dua. Ketika berada di koordinat $(x,y)$, dia bisa 
+	 	     	    bergerak ke kanan $(x+1,y)$, kiri $(x-1,y)$, atas $(x,y+1)$, atau bawah $(x,y-1)$ dengan aturan 
+	 	     	    tertentu sesuai dengan tabel berikut:\\
+	 	     	    \includegraphics[scale=0.5]{latsol2.png}\\
+	 	    Tabel tersebut menunjukkan aturan pergerakan semut tersebut. Baris menunjukkan 
+	 	    gerakan yang terakhir dilakukan sementara kolom menunjukkan ganjil/genapnya
+	 	    koordinat semut sekarang. Misalnya, jika sekarang berada di koordinat $(10,12)$ yaitu 
+	 	    (genap,genap) dan sebelumnya bergerak ke kiri dari $(11,12)$, maka gerakan selanjutnya 
+	 	    adalah ke bawah yaitu ke $(10,11)$. Jika semut tersebut ingin bergerak dari koordinat $(0,0)$
+	 	    ke koordinat $(-1,-100)$, gerakan awal apa saja yang cocok?
+	 	    
+	 	    \item (KSN-K 2021) Pak Dengklek mempunyai 3 jenis ubin dengan bentuk dan ukuran sebagai berikut:\\
+	 	    	\includegraphics[scale=0.8]{latsol3-4.png}\\
+	 	    Sementara Pak Dengklek ingin menutup lantai dengan bentuk berikut :\\
+	 	    	\includegraphics[scale=0.8]{latsol3.png}\\
+	 	    Tentu saja, ubin yang dipasang tidak boleh tumpang tindih dan keseluruhan ubin harus 
+	 	    masuk ke dalam lantai. Ubin dapat dirotasi maupun direfleksi. Apabila banyak stok ubin 
+	 	    tak terhingga untuk setiap jenisnya, berapa banyak cara menutup lantai tersebut?
+	 	    
+	 	    \item (KSN-K 2021)Pak Dengklek mempunyai 3 jenis ubin dengan bentuk dan ukuran sebagai berikut:\\
+	 	     	 \includegraphics[scale=0.8]{latsol3-4.png}\\
+	 	    Sementara Pak Dengklek ingin menutup lantai dengan bentuk berikut :\\
+	 	    	\includegraphics[scale=0.8]{latsol4.png}\\
+	 	    Tentu saja, ubin yang dipasang tidak boleh tumpang tindih dan keseluruhan ubin harus 
+	 	    masuk ke dalam lantai. Ubin dapat dirotasi maupun direfleksi. Apabila banyak stok ubin 
+	 	    tak terhingga untuk setiap jenisnya, berapa banyak cara menutup lantai tersebut?
+	 	    
+	 	    \item (KSN-K 2021) Tiga ekor bebek Pak Dengklek bernama Kwik, Kwak, dan Kwek sedang bermain. 
+	 	    Pertama-tama, mereka menentukan urutan giliran secara adil dengan peluang yang 
+	 	    sama. Pada setiap giliran, seekor bebek dapat memilih bebek yang lain untuk diserang,
+	 	    atau diam. Setiap serangan mempunyai peluang untuk berhasil tergantung kepada
+	 	    penyerangnya. Diketahui semua serangan Kwik berhasil, $1/2$ serangan Kwak berhasil, dan 
+	 	    $3/4$ serangan Kwek berhasil. Apabila sebuah serangan berhasil maka bebek yang diserang 
+	 	    keluar dari permainan. Namun apabila serangan gagal, maka tidak terjadi apa-apa.
+	 	    Permainan akan dilanjutkan sampai tersisa seekor bebek sebagai pemenang. Apabila 
+	 	    diasumsikan semua bebek bermain secara optimal, maka siapakah yang mempunyai 
+	 	    peluang menang lebih dari $1/2$?
+	 	    
+	 	    \item (KSN-K 2021) Diberikan denah ruangan seperti pada gambar di bawah.\\
+	 	    	\includegraphics[scale=0.8]{latsol6.png}\\
+	 	    Mula-mula Pak Dengklek berada pada ruangan S. Setiap saat, dengan peluang yang 
+	 	    sama Pak Dengklek berpindah ke ruangan lain yang bersebelahan dengan ruangan saat 
+	 	    ini. Jika Pak Dengklek sampai pada ruangan W, Pak Dengklek langsung menang. 
+	 	    Sebaliknya, jika sampai pada ruangan L, Pak Dengklek langsung kalah. Selain itu, Pak 
+	 	    Dengklek akan tetap berpindah-pindah selama belum menang maupun kalah. Berapa 
+	 	    peluang Pak Dengklek untuk menang?
+	 	    
+	 	    \item (KSN-K 2021) Diberikan denah ruangan seperti pada gambar di bawah.\\
+	 	     	    	\includegraphics[scale=0.8]{latsol7.png}\\
+	 	     	    Mula-mula Pak Dengklek berada pada ruangan S. Setiap saat, dengan peluang yang 
+	 	     	    sama Pak Dengklek berpindah ke ruangan lain yang bersebelahan dengan ruangan saat 
+	 	     	    ini. Jika Pak Dengklek sampai pada ruangan W, Pak Dengklek langsung menang. 
+	 	     	    Sebaliknya, jika sampai pada ruangan L, Pak Dengklek langsung kalah. Selain itu, Pak 
+	 	     	    Dengklek akan tetap berpindah-pindah selama belum menang maupun kalah. Berapa 
+	 	     	    peluang Pak Dengklek untuk menang?
+	 	     	    
+	 	    \item (KSN-K 2021)  Berapa banyak cara memasang 8 ubin berukuran 1 $\times$ 3 pada lantai berukuran 5 $\times$ 5 jika 
+	 	    tidak boleh ada ubin yang saling tumpang tindih dan semua ubin masuk di area lantai?
+	 	    
+	 	    \item (KSN-K 2021)  Di atas papan berukuran 3 $\times$ 3 petak, ingin diletakkan beberapa buah batu sehingga setiap 
+	 	    sub-petak berukuran 2 $\times$ 2 terdapat tepat 1 batu di atasnya. Berapa banyak cara yang 
+	 	    mungkin?
+	 	    
+	 	    \item (KSN-K 2021) Diberikan 4 buah pewarna, yaitu: merah, biru, kuning, dan hijau serta petak berukuran 2 
+	 	    $\times$ 4. Dua buah petak dikatakan bersebelahan apabila keduanya saling berbagi sisi. Apabila 
+	 	    setiap petak bersebelahan tidak boleh mempunyai warna yang sama, berapa banyak cara 
+	 	    mewarnai semua petak tersebut?
+	 	    
+		    \item (KSN-K 2021) Diberikan 3 buah pewarna, yaitu: merah, biru, dan kuning serta petak berukuran 2 $\times$ 4.
+		    Dua buah petak dikatakan bersebelahan apabila keduanya saling berbagi sisi. Selain itu, 
+		    ujung-ujung petak saling dikaitkan, artinya petak paling kiri dengan petak paling kanan di 
+		    suatu baris dianggap bersebelahan juga. Berapa banyak cara mewarnai petak tersebut?
+		    
+		    \textbf{(KSN-K 2021) Perhatikan potongan program berikut!}
+		    \begin{lstlisting}
+		    int f(int x, int y) {
+		    	if(x == 0 || y == 0) {
+		    		return 1;
+		    	}
+		    	else {
+		    		return f(x-1, y) + f(x, y-1);
+		    	}
+		    }
+		    int g(int x, int y) {
+	   	    	if(x == 0) {
+	   	    		return 1;
+	   	    	}
+	   	    	else {
+	   	    		return g(x-1, y) + f(x, y);
+	   	    	}
+	 	    }
+		    \end{lstlisting}
+		    \item  Nilai kembalian dari pemanggilan fungsi \verb*|f(9,5)| adalah ...
+		    
+		    \item  Nilai kembalian dari pemanggilan fungsi \verb*|g(10,5)| adalah ...
+		    
+		    \textbf{(KSN-K 2020) Perhatikan potongan program berikut:}
+		    \begin{lstlisting}
+		    int ayam(int a, int b) {
+		    	if(b == 0) {
+		    		return 0;
+		    	} else if(b == 1) {
+		    		return a;
+		    	} else {
+		    		return ayam(a, b/2) + ayam(a, b % 2);
+		    	}
+		    }
+		    \end{lstlisting}
+		    \item Berapakah hasil dari pemanggilan fungsi \verb*|ayam(19,39)|?
+		    
+		    \end{enumerate}
+\end{document}

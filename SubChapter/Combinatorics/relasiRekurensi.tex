@@ -1,0 +1,20 @@
+\subsection{Relasi Rekurensi}
+Sering disebut dengan rekursif. Intinya adalah sebuah persamaan yang melibatkan barisan $a_1, a_2, \dots , a_n$ dimana untuk mendapatkan nilai $a_k$ membutuhkan suku-suku sebelumnya $a_{k-1}, a_{k-2}, \dots,$ atau $a_1$. 
+
+Contoh paling terkenal dari persamaan rekursif adalah bilangan Fibonacci $0,1,1,2,3,5,8,13,21,\dots$ yang secara matematis didefinisikan sebagai berikut.
+\begin{align*}
+    F_0 &= 0, F_1 = 1\\
+    F_n &= F_{n-1}+F_{n-2} \text{ untuk } n \ge 2
+\end{align*}
+
+atau yang lebih terkenal di ranah \textit{Computer Science} adalah permasalahan \textit{Tower of Hanoi} dengan persamaan rekursifnya didefinisikan sebagai berikut.
+\begin{align*}
+    T_1 &= 1 \\
+    T_n &= 2T_{n-1}+1
+\end{align*}
+
+Untuk menyelesaikan soal relasi rekurensi, butuh manipulasi aljabar yang mumpuni sehingga tidak ada pendekatan eksplisit selain menggunakan persamaan karakteristik atau fungsi pembangkit (tidak dibahas disini) yang dijamin berhasil.
+
+\input{SubChapter/Combinatorics/persamaanKarakteristikRekursif}
+
+\input{Soal/Combinatorics/relasiRekurensi}

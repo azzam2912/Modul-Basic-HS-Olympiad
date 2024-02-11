@@ -1,0 +1,35 @@
+\subsection{Fungsi}
+Fungsi $f : A \rightarrow B$ adalah suatu pemetaan dari $A$ ke $B$ dimana $A$ adalah domain dan $B$ adalah kodomain fungsi. Lebh lanjut, fungsi $f$ \textit{well-defined} jika untuk $\forall x \in A$ terdapat tepat satu (jadi ngga boleh ada dua) $y \in B$ sehingga $f(x)=y$. Himpunan seluruh $y$ hasil pemetaan fungsi tersebut dinamakan \textbf{range} fungsi $f$.
+
+Tips-tips mengerjakan soal fungsi adalah (tergantung domainnya)
+\begin{enumerate}
+\item Substitusi $x=0$
+\item Mengganti $x$ dengan $-x$
+\item Mmebentuk suatu bentuk yang simetris (banyak-banyak latihan soal saja biar mengerti).
+\end{enumerate}
+
+\subsubsection{Fungsi Injektif (satu-satu)}
+Definisi: Untuk setiap $x \in A$ ada tepat satu $y \in B$ sehingga $f(x)=y$. 
+Catatan: Range dari fungsi $f$ tidak perlu mencover seluruh kodomain $B$.\\
+Contoh: Dengan $f: \RR \rightarrow \RR$, $f(x)=x$, $f(x)=2x+3$, dll.\\ 
+Contoh yang bukan fungsi injektif: Dengan $f(x)=x^2$ dari real ke real, misalkan $f(x)=4$, berarti $x=2$ dan $x=-2$, padahal biar injektif harusnya $x$ cuma satu aja.
+
+\subsubsection{Fungsi Surjektif (Fungsi Onto)}
+Definisi: Untuk setiap $y \in B$ terdapat $x \in A$ sehingga $f(x)=y$. 
+Catatan: Dapat dikatakan range fungsi tersebut adalah kodomainnya juga (untuk sebagian besar kasus) atau dengan kata lain $f(x)$ "menyentuh" semua nilai yang mungkin di kodomainnya. \\
+Contoh: $f(x)=x$, $f(x)=x^3$, dll.\\
+Contoh yang bukan fungsi surjektif: $f(x)=x^4$ dari real ke real, perhatikan bahwa $f(x)$ harus "mengcover" semua nilai, namun adakah $x$ yang membuat $f(x)=-1$? Tidak ada bukan, berarti bukan fungsi surjektif.
+
+\subsubsection{Fungsi Bijektif}
+Fungsi yang injektif sekaligus surjektif.
+
+\subsection{Komposisi Fungsi}
+Simpelnya, fungsi di dalam fungsi. Untuk fungsi $f:A \rightarrow B$ dan $g:B \rightarrow C$, komposisi fungsinya adalah
+$$(g \circ f)(x) = g(f(x)).$$
+
+\subsubsection{Invers Fungsi}
+Simpelnya kebalikan fungsi. Invers dari fungsi $f: A \rightarrow B$ adalah fungsi $f^{-1} : B \rightarrow A$ dengan didefinisikan sebagai
+$$f^{-1}(f(x))=x.$$
+Dengan kata lain, kita punya $f(x)=y$ jika dan hanya jika $f^{-1}(y)=x$.
+
+\input{Soal/Algebra/fungsi}

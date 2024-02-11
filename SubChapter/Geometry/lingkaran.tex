@@ -1,0 +1,42 @@
+\subsection{Lingkaran}
+
+\begin{center}
+\begin{tikzpicture}
+\coordinate (O) at (0,0);
+\coordinate (B) at (0:2cm);
+\coordinate (A) at (210:2cm);
+\coordinate (D) at (180:2cm);
+\coordinate (C) at (130:2cm);
+\coordinate (E) at (-20:2cm);
+
+\draw (O) circle (2cm);
+
+\draw (A) -- (B) -- (C) -- (D) -- cycle;
+\draw (A) -- (E) -- (C);
+\draw[red] (A) -- (C);
+
+\tkzDefPointBy[projection=onto A--C](O) \tkzGetPoint{F}
+\draw[orange] (O) -- (F);
+\draw[blue] (C) -- (O) -- (A);
+
+\node[right] at (B) {$B$};
+\node[below left] at (A) {$A$};
+\node[left] at (D) {$D$};
+\node[above left] at (C) {$C$};
+\node[below right] at (E) {$E$};
+\node[right] at (O) {$O$};
+\node[above right] at (F) {$F$};
+\end{tikzpicture}
+\end{center}
+
+    
+Misalkan $O$ pusat lingkaran $\Gamma$ dan $A,B,C,D,E$ adalah sembarang titik pada lingkaran $\Gamma$ seperti pada gambar.
+\begin{enumerate}
+    \item $CO=OA$ adalah jari-jari dengan $\angle ACO = \angle OAC$.
+    \item Misalkan titik $F$ adalah titik tengah tali busur $CA$, maka $OF \perp CA$ atau $OF$ tegak lurus dengan $CA$, dengan kata lain, $F$ adalah proyeksi titik $O$ ke $CA$
+    \item (Sudut keliling-sudut pusat) Untuk$\angle COA = 2\angle CBA$.
+    \item (sudut keliling) $\angle CBA = \angle CEA$.
+    \item $ABCD$ adalah segiempat tali busur atau segiempat siklis  atau $A,B,C,D$ terletak di lingkaran (seperti pada gambar) jika dan hanya jika $\angle CBA + \angle ADC = 180^\circ$ atau $\angle ABD = \angle ACD$.
+\end{enumerate}
+
+\input{Soal/Geometry/lingkaran}

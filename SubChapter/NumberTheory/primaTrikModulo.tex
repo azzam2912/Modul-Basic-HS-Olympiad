@@ -1,0 +1,26 @@
+\subsection{Bilangan Prima Serta Trik-trik Modulo Umum}
+\begin{enumerate}
+    \item Bilangan prima adalah bilangan asli yang hanya dapat dibagi dirinya sendiri dan angka 1. 
+    \item Bilangan bukan prima dan bukan 1 disebut bilangan komposit.
+    \item 1 bukan bilangan prima dan bukan pula bilangan komposit. 
+\end{enumerate}
+
+Untuk bilangan prima $p$ dan bilangan bulat $n$.
+\begin{enumerate}
+    \item Bilangan prima genap hanya ada satu buah, yaitu 2.
+    \item Dari definisi bilangan prima $p$, karena $p$ tak terbagi oleh $2$ dan $5$, maka tak ada bilangan prima yang berakhiran $0$.
+    \item Untuk sembarang bilangan prima $p$ berlaku $p \mid n$ atau $gcd(p,n)=1$.
+    \item $p \mid n^2$ jika dan hanya jika $p \mid n$.
+    \item $p \mid ab \iff p \mid a \text{ atau } p \mid b$.
+    \item Untuk $p > 3$, kita punya bentuk $p = 6k \pm 1$ untuk suatu bilangan asli $k$.
+    \item (Sieve of Erastosthenes) 
+    Faktor prima terkecil $t$ dari bilangan komposit $n$ selalu $t \le \sqrt{n}$.
+\end{enumerate}
+    
+Lalu, beberapa trik-trik modulo umum:
+\begin{enumerate}
+    \item Pada sistem persamaan bulat, tinjau modulo 3, 4, 5, 7, atau modulo 11 nya.
+    \item Untuk bilangan bulat $n$ selalu terjadi $n^2 \equiv 1 \mod 4$, $n^2 \equiv 1 \mod 3$. Peninjauan terhadap modulo lain juga bisa, namun tidak terlalu umum.
+\end{enumerate}
+
+\input{Soal/NumberTheory/primaTrikModulo}

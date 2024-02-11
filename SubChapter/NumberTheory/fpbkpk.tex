@@ -1,0 +1,15 @@
+\subsection{FPB dan KPK dua bilangan}
+Secara matematis FPB (gcd - greatest common divisors) dan KPK (lcm - least common multiples) dari dua bilangan bulat positif $a$ dan $b$ 
+didefinisikan sebagai:
+$$FPB(a,b) = gcd(a,b) = p_1^{\min\{a_1,b_1\}}\cdot p_2^{\min\{a_2,b_2\}} \cdot \ldots \cdot p_n^{\min\{a_n,b_n\}}$$
+$$KPK(a,b) = lcm(a,b) =p_1^{\max\{a_1,b_1\}}\cdot p_2^{\max\{a_2,b_2\}} \cdot \ldots \cdot p_n^{\max\{a_n,b_n\}}$$
+dimana kedua bilangan tersebut dapat difaktorisasi prima menjadi
+$a=p_1^{a_1}\cdot p_2^{a_2}\cdot \ldots \cdot p_n^{a_n}$ dan $b=p_1^{b_1}\cdot p_2^{b_2} \cdot \ldots \cdot p_n^{b_n}$, dengan $p_1,p_2,\dots,p_n$ adalah bilangan prima berbeda, serta $a_1,a_2,\dots,a_n,b_1,b_2,\dots,b_n$ adalah bilangan bulat non-negatif.
+
+Dari definisi tersebut mudah dibuktikan bahwa
+$$FPB(a,b) \cdot KPK(a,b) = ab.$$
+
+Perlu dicatat, bahwa $a$ dan $b$ tidak boleh bernilai nol. Untuk $a,b$ yang bernilai negatif, didefinisikan $FPB(a,b) = FPB(|a|,|b|)$.
+
+\input{SubChapter/NumberTheory/algoritmaEuclid}
+\input{Soal/NumberTheory/fpbkpk}
