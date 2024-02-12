@@ -1,46 +1,11 @@
-\documentclass[11pt]{scrartcl}
-\usepackage{graphicx}
-\graphicspath{{./}}
-\usepackage[sexy]{evan}
-\usepackage[normalem]{ulem}
-\usepackage{hyperref}
-\usepackage{mathtools}
-\hypersetup{
- colorlinks=true,
- linkcolor=blue,
- filecolor=magenta,      
- urlcolor=cyan,
- pdftitle={Overleaf Example},
- pdfpagemode=FullScreen,
- }
- 
- \usepackage{listings}
- \usepackage{xcolor}
- \lstset { %
-   language=C++,
-   backgroundcolor=\color{black!5}, % set backgroundcolor
-   %basicstyle=\footnotesize,% basic font setting
- }
 
-\renewcommand{\baselinestretch}{1.5}
-
-\addtolength{\oddsidemargin}{-0.4in}
-\addtolength{\evensidemargin}{-0.4in}
-\addtolength{\textwidth}{0.8in}
-
-\usepackage{pgfplots}
-\pgfplotsset{compat=1.15}
-\usepackage{mathrsfs}
-\usetikzlibrary{arrows}
-
-\setlength{\parindent}{0cm}
-
-
-\begin{document}
 	\title{Handout Basic Programming and Algorithm} % Beginner
 	\date{\today}
 	\author{Azzam L. H.}
 	\maketitle
+
+ \renewcommand*\contentsname{Daftar Isi}
+\tableofcontents
 	\noindent
 	\section{Referensi dan Situs Utama untuk Latihan}
 	\begin{enumerate}
@@ -560,7 +525,7 @@
 		return (j == 2*n);
 	}
 	\end{lstlisting}
-	Manakah pemanggilan yang menghasilkan false?
+	Manakah pemanggilan yang menghasilkan true?
 	\begin{enumerate}[a)]
 	\item tes2(12)
 	\item tes2(24)
@@ -616,7 +581,7 @@
 			\item 91
 		\end{enumerate}
 		
-		\item Agar keluaran fungsi \verb*|sum(n) > 100|, 
+		\item Agar keluaran fungsi \verb*|sum(n)>100|, 
 		berapakah harga \verb*|n| terkecil?
 			\begin{enumerate}[a)]
 				\item 11
@@ -917,4 +882,3 @@
 		    \item Berapakah hasil dari pemanggilan fungsi \verb*|ayam(19,39)|?
 		    
 		    \end{enumerate}
-\end{document}
