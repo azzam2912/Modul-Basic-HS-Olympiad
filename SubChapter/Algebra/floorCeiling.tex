@@ -1,7 +1,8 @@
- \subsection{Floor and Ceiling}
-Definisikan $\floor{x}$ (floor x) sebagai bilangan bulat terbesar yang kurang dari sama dengan $x$. Simpelnya, $\floor{x}$ dapat dikatakan sebagai "pembulatan ke bawah". Contoh: $\floor{\pi}=3$, $\floor{2}=2$, $\floor{10,51}=10$, $\floor{-1,5}=-2$.
+Definisikan $\floor{x}$ (\textit{floor} $x$) sebagai bilangan bulat terbesar yang kurang dari sama dengan $x$. Simpelnya, $\floor{x}$ dapat dikatakan sebagai "pembulatan ke bawah". Contoh: $\floor{\pi}=3$, $\floor{2}=2$, $\floor{10,51}=10$, $\floor{-1,5}=-2$.
 
-Definisikan $\ceiling{x}$ (ceiling x) sebagai bilangan bulat terkecil yang lebih dari sama dengan $x$. Simpelnya, $\ceiling{x}$ dapat dikatakan sebagai "pembulatan ke atas". Contoh: $\ceiling{\pi}=4$, $\ceiling{2}=2$, $\ceiling{10,51}=11$, $\ceiling{-1,5}=-1$.
+Definisikan $\ceiling{x}$ (\textit{ceiling} $x$) sebagai bilangan bulat terkecil yang lebih dari sama dengan $x$. Simpelnya, $\ceiling{x}$ dapat dikatakan sebagai "pembulatan ke atas". Contoh: $\ceiling{\pi}=4$, $\ceiling{2}=2$, $\ceiling{10,51}=11$, $\ceiling{-1,5}=-1$.
+
+Definisikan $\{x\}$ sebagai \textit{fractional part} dari $x \in \RR$ dimana $\{x\} = x - \floor{x}$.
 
 Beberapa properti:
 \begin{enumerate}
@@ -9,9 +10,11 @@ Beberapa properti:
     \item $\floor{x}=\ceiling{x}-1$ untuk $x \not \in \ZZ$.
     \item $\floor{x} \le  x < \floor{x}+1$ untuk $x \in \RR$.
     \item $\ceiling{x}-1 < x \le \ceiling{x}$ untuk $x \in \RR$.
-    \item $\floor{a+x}=a+\floor{x}$ dan $\ceiling{a+x}=a+\ceiling{x}$ untuk $a\in \ZZ$ dan $x \in \RR$.
+    \item $\floor{n+x}=n+\floor{x}$ dan $\ceiling{n+x}=n+\ceiling{x}$ untuk $n\in \ZZ$ dan $x \in \RR$.
+    \item Untuk semua $x,y \in \RR$ berlaku $\floor{x+y} \ge \floor{x}+\floor{y}$.
+    \item Untuk semua $x,y \in \RR$ jika $x \le y$ berlaku $\floor{x} \le \floor{y}$.
+    \item $0 \le \{x\} < 1$ untuk $x \in \RR$.
 \end{enumerate}
-
 \subsubsection{Hermite's Identity}
 Untuk sembarang bilangan real $x$ dan bilangan bulat positif $n$,
 $$\floor{nx}=\floor{x}+\floor{x+\dfrac{a}{n}}+\floor{x+\dfrac{2}{n}}+\dots+\floor{x+\dfrac{n-1}{n}}.$$
