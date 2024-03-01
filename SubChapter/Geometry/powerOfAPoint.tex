@@ -1,4 +1,55 @@
 \subsection{Power of a point}
+\begin{figure}[h]
+  \begin{asy}
+    unitsize(1.5cm);
+    pair O, A, B, C, D, E, P;
+    O = (0,0);
+    P = (4,1);
+    E = (0,1);
+    A = dir(50);
+    C = dir(-30);
+    circle o = circumcircle(A,E,C);
+    draw(o);
+    pair B1[] = intersectionpoints(line(A,P), o);
+    pair D1[] = intersectionpoints(line(C,P), o);
+    B = B1[0];
+    D = D1[0];
+    draw(A--B);
+    draw(C--D);
+    draw(P--A);
+    draw(P--D);
+    draw(P--E, red);
+    draw(P--O, blue+dotted);
+    label("$O$",O,SW);
+    label("$A$",A,E);
+    label("$B$",B,N);
+    label("$C$",C,SE);
+    label("$D$",D,SW);
+    label("$P$",P,NE);
+    label("$E$",E,N);
+    \end{asy}
+    \begin{asy}
+    unitsize(1.5cm);
+    pair O, A, B, C, D, P;
+    O = (0,0);
+    A = dir(50);
+    C = dir(130);
+    D = dir(-30);
+    B = dir(-110);
+    P = extension(A,B,C,D);
+    draw(circumcircle(A,B,C));
+    draw(A--B);
+    draw(C--D);
+    draw(A--C--B--D--cycle);
+    draw(O--P, dotted);
+    label("$O$",O,SW);
+    label("$A$",A,E);
+    label("$B$",B,SW);
+    label("$C$",C,NW);
+    label("$D$",D,SE);
+    label("$P$",P,E);
+    \end{asy}
+\end{figure}
 Diberikan lingkaran $\Gamma$ dan titik $P$ yang terletak di dalam atau di luar lingkaran $\Gamma$. Maka definisikan kuasa atau power dari $P$ terhadap lingkaran $\Gamma$ sebagai
 $$Pow_\Gamma (P) = |OP^2-r^2|$$
 dimana $O$ adalah pusat dari $\Gamma$ dan $r$ adalah jari-jari lingkaran $\Gamma$.
