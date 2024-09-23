@@ -151,7 +151,6 @@
 %Convenient Environments
 \newenvironment{soln}{\begin{proof}[Solution]}{\end{proof}}
 \newenvironment{parlist}{\begin{inparaenum}[(i)]}{\end{inparaenum}}
-\newenvironment{gobble}{\setbox\z@\vbox\bgroup}{\egroup}
 
 \newenvironment{bukti}{\begin{proof}[Bukti]}{\end{proof}}
 \newenvironment{buktilemma}{\begin{proof}[Bukti Lemma]}{\end{proof}}
@@ -731,7 +730,7 @@
 			\addtolength{\textheight}{3.14cm}
 			\setlength{\footskip}{0.5in}
 			\setlength{\headsep}{10pt}
-			\ihead{\footnotesize\textbf{\theauthor} (\thedate)}
+			\ihead{\footnotesize\textbf{\theauthor}}
 			\automark{section}
 			\chead{}
 			\ohead{\footnotesize\textbf{\thetitle}}
