@@ -18,11 +18,12 @@ Pada segitiga $ABC$ seperti gambar berikut:
     % incircle
     \tkzDefCircle[in](A,B,C)\tkzGetPoint{I}\tkzGetLength{rIN}
     \tkzDrawPoint(I)
-    \tkzDrawCircle[R](I,\rIN pt)
+    \tkzDefCircle[R](I,\rIN)\tkzGetPoint{Ia}
+    \tkzDrawCircle(I,Ia)
     
     % angle bisector
-    \tkzDrawBisector[blue](B,A,C)\tkzGetPoint{E}
-    \tkzDrawCircle[R](E,1 pt)
+    \tkzDefLine[bisector](B,A,C)\tkzGetPoint{E} 
+    \tkzDrawLine[blue](A,E)
     
     %altitude
     \tkzDefPointBy[projection=onto B--C](A) \tkzGetPoint{D}
@@ -55,6 +56,7 @@ Pada segitiga $ABC$ seperti gambar berikut:
     \node[above] at (D) {$D$};
     \node[right] at (M) {$M$};
 \end{tikzpicture}
+
 \end{center}
 \begin{enumerate}
     \item Garis bagi $AE$ yaitu garis yang membagi dua sudut $A$ sama besar sehingga $\angle BAE = \angle EAC$. 
