@@ -1,0 +1,489 @@
+\section{Geometri}
+Pada dasarnya geometri di olimpiade matematika SMA "hanya" tentang lingkaran dan segitiga dua dimensi (Soal bangun tiga dimensi hampir ngga pernah dikeluarin untuk lomba tingkat SMA).
+\subsection{Garis, Segmen Garis, Sinar (Bukan Vektor!)}
+    Perlu ditekankan bahwa \textbf{garis tidak sama dengan ruas garis}. Garis panjangnya tak hingga, sedangkan ruas garis atau segmen garis panjangnya terbatas. Gambar di bawah terdiri dari \textbf{garis AB, segmen garis CD, sinar EF}.
+\begin{center}
+\begin{tikzpicture}
+    % Draw a line
+    \draw[red, thick, <->] (-4,-1) -- (0,1);
+    \node at (-2,1.3) {Garis $AB$};
+    \fill (-3,-0.5) circle (2pt);
+    \fill (-1,0.5) circle (2pt);
+    \node at (-3,-0) {$A$};
+    \node at (-1,0) {$B$};
+
+    % Draw a segment
+    \draw[thick] (2,-1) -- (4,1);
+    \node at (3,1.3) {Segmen $CD$};
+    \fill (2,-1) circle (2pt);
+    \fill (4,1) circle (2pt);
+    \node at (2,-0.5) {$C$};
+    \node at (4,0.5) {$D$};
+
+    % Draw a ray
+    \draw[blue, thick, ->] (6,-1) -- (10,1);
+    \node at (6.5,1.3) {Sinar $EF$};
+    \fill (6,-1) circle (2pt);
+    \fill (9,0.5) circle (2pt);
+    \node at (6,-0.5) {$E$};
+    \node at (9,1) {$F$};
+\end{tikzpicture}
+\end{center}
+\subsection{Lingkaran}
+
+\begin{center}
+\begin{tikzpicture}
+\coordinate (O) at (0,0);
+\coordinate (B) at (0:2cm);
+\coordinate (A) at (210:2cm);
+\coordinate (D) at (180:2cm);
+\coordinate (C) at (130:2cm);
+\coordinate (E) at (-20:2cm);
+
+\draw (O) circle (2cm);
+
+\draw (A) -- (B) -- (C) -- (D) -- cycle;
+\draw (A) -- (E) -- (C);
+\draw[red] (A) -- (C);
+
+\tkzDefPointBy[projection=onto A--C](O) \tkzGetPoint{F}
+\draw[orange] (O) -- (F);
+\draw[blue] (C) -- (O) -- (A);
+
+\node[right] at (B) {$B$};
+\node[below left] at (A) {$A$};
+\node[left] at (D) {$D$};
+\node[above left] at (C) {$C$};
+\node[below right] at (E) {$E$};
+\node[right] at (O) {$O$};
+\node[above right] at (F) {$F$};
+\end{tikzpicture}
+\end{center}
+
+    
+Misalkan $O$ pusat lingkaran $\Gamma$ dan $A,B,C,D,E$ adalah sembarang titik pada lingkaran $\Gamma$ seperti pada gambar.
+\begin{enumerate}
+    \item $CO=OA$ adalah jari-jari dengan $\angle ACO = \angle OAC$.
+    \item Misalkan titik $F$ adalah titik tengah tali busur $CA$, maka $OF \perp CA$ atau $OF$ tegak lurus dengan $CA$, dengan kata lain, $F$ adalah proyeksi titik $O$ ke $CA$
+    \item (Sudut keliling-sudut pusat) Untuk$\angle COA = 2\angle CBA$.
+    \item (sudut keliling) $\angle CBA = \angle CEA$.
+    \item $ABCD$ adalah segiempat tali busur atau segiempat siklis  atau $A,B,C,D$ terletak di lingkaran (seperti pada gambar) jika dan hanya jika $\angle CBA + \angle ADC = 180^\circ$ atau $\angle ABD = \angle ACD$.
+\end{enumerate}
+\input{High/SoalMath/Geometry/lingkaran.tex}
+\subsection{Segitiga}
+Pada segitiga $ABC$ seperti gambar berikut:
+\begin{center}
+\begin{tikzpicture}
+    % Define the coordinates of the vertices
+    \coordinate (A) at (0,0);
+    \coordinate (B) at (8,0);
+    \coordinate (C) at (1.5,4);
+    
+    % Draw the triangle
+    \draw (A) -- (B) -- (C) -- cycle;
+    
+    % circumcircle
+    \tkzCircumCenter(A,B,C)\tkzGetPoint{O}
+    \tkzDrawPoint(O)
+    \tkzDrawCircle(O,A)
+    
+    % incircle
+    \tkzDefCircle[in](A,B,C)\tkzGetPoint{I}\tkzGetLength{rIN}
+    \tkzDrawPoint(I)
+    \tkzDefCircle[R](I,\rIN)\tkzGetPoint{Ia}
+    \tkzDrawCircle(I,Ia)
+    
+    % angle bisector
+    \tkzDefLine[bisector](B,A,C)\tkzGetPoint{E} 
+    \tkzDrawLine[blue](A,E)
+    
+    %altitude
+    \tkzDefPointBy[projection=onto B--C](A) \tkzGetPoint{D}
+    \tkzDefPointBy[projection=onto B--A](C) \tkzGetPoint{C1}
+    \tkzInterLL(A,D)(C,C1) \tkzGetPoint{H}
+    \tkzDrawPoints(H) \tkzLabelPoints[below right](H)
+    \tkzDrawSegment[red](A,D)
+    \tkzDrawSegment[red](C,C1)
+
+    %garis sumbu
+    \tkzDefPointBy[projection=onto B--C](O) \tkzGetPoint{M}
+    \tkzDefPointBy[homothety=center O ratio 3.2](M) \tkzGetPoint{M1}
+    \tkzDefPointBy[homothety=center O ratio -3.2](M) \tkzGetPoint{M2}
+    \tkzDrawSegment(M1,M2)
+    \tkzDefPointBy[projection=onto B--A](O) \tkzGetPoint{M3}
+
+    %centroid
+    \tkzDrawSegment[green](A,M)
+    \tkzDrawSegment[green](C,M3)
+    \tkzInterLL(A,M)(C,M3) \tkzGetPoint{G}
+    \tkzDrawPoints(G) \tkzLabelPoints[below right](G)
+    
+    % Label the vertices
+    \node[below left] at (A) {$A$};
+    \node[below right] at (B) {$B$};
+    \node[above] at (C) {$C$};
+    \node[below right] at (I) {$I$};
+    \node[right] at (O) {$O$};
+    \node[above right] at (E) {$E$};
+    \node[above] at (D) {$D$};
+    \node[right] at (M) {$M$};
+\end{tikzpicture}
+
+\end{center}
+\begin{enumerate}
+    \item Garis bagi $AE$ yaitu garis yang membagi dua sudut $A$ sama besar sehingga $\angle BAE = \angle EAC$. 
+    \item Garis berat $AM$ dengan $M$ adalah titik tengah $BC$.
+    \item Garis tinggi $AD$ adalah garis yang tegak lurus dengan $BC$. $D$ biasa disebut dengan proyeksi $A$ ke $BC$.
+    \item Garis $OM$ adalah salah satu garis sumbu segitiga $ABC$, yaitu garis yang melewati titik tengah sisi segitiga dan tegak lurus dengan sisi itu.
+    \item Pertemuan atau perpotongan ketiga garis tinggi segitiga $ABC$ adalah titik tinggi, dalam gambar ini adalah $H$ (orthocenter).
+    \item Pertemuan atau perpotongan ketiga garis bagi segitiga $ABC$ adalah titik bagi atau titik pusat lingkaran dalam (incircle) segitiga $ABC$ dalam gambar ini adalah $I$ (incenter).
+    \item Pertemuan atau perpotongan ketiga garis berat segitiga $ABC$ adalah titik berat (centroid).
+    \item Pertemuan atau perpotongan ketiga garis sumbu segitiga $ABC$ adalah titik pusat lingkaran luar (circumcircle) segitiga $ABC$ yang dalam gambar ini adalah $O$ (circumcenter).
+    \item Berlaku \textbf{ketaksamaan segitiga} yaitu $AB+BC>CA$, $BC+CA>AB$, dan $CA+AB>BC$. Selain itu juga berlaku $|AB-BC|<CA$, $|BC-CA|<AB$, dan $|CA-AB|<BC$.
+\end{enumerate}
+\subsection{Kesebangunan Segitiga}
+\begin{center}
+\begin{tikzpicture}
+  % First triangle
+  \coordinate (A) at (0,0);
+  \coordinate (B) at (3,0);
+  \coordinate (C) at (2,2);
+  \draw (A) -- (B) -- (C) -- cycle;
+
+  % Second triangle
+  \coordinate (D) at (6,0);
+  \coordinate (E) at (12,0);
+  \coordinate (F) at (8,4);
+  \draw (D) -- (E) -- (F) -- cycle;
+
+  % Labeling the vertices
+  \node[below] at (A) {$A$};
+  \node[below] at (B) {$B$};
+  \node[above] at (C) {$C$};
+  \node[below] at (D) {$D$};
+  \node[below] at (E) {$E$};
+  \node[above] at (F) {$F$};
+
+  \draw pic[draw=green!30,fill=green!30,angle radius=0.5cm] {angle=A--C--B};
+  \draw pic[draw=green!30,fill=green!30,angle radius=0.5cm] {angle=D--F--E};
+  \draw pic[draw=red!30,fill=red!30,angle radius=0.5cm] {angle=B--A--C};
+  \draw pic[draw=red!30,fill=red!30,angle radius=0.5cm] {angle=F--E--D};
+  \draw pic[draw=blue!30,fill=blue!30,angle radius=0.5cm] {angle=C--B--A};
+  \draw pic[draw=blue!30,fill=blue!30,angle radius=0.5cm] {angle=E--D--F};
+\end{tikzpicture}
+\end{center}
+
+
+
+Segitiga $ABC$ dan $DEF$ sebangun atau $ABC \sim DEF$ jika dan hanya jika minimal salah satu syarat ini terpenuhi:
+\begin{enumerate}
+    \item $\angle ABC = \angle DEF$ dan $\angle BAC = \angle EDF$.
+    \item $\dfrac{AB}{DE} = \dfrac{BC}{EF} = \dfrac{CA}{FD}$.
+    \item $\dfrac{AB}{DE} = \dfrac{BC}{EF}$ dan $\angle ABC = \angle DEF$ (sudut yang diapit dua sisi yang diperbandingkan nilainya sama)
+\end{enumerate}
+
+\subsection{Kekongruenan Segitiga}
+\begin{center}
+\begin{tikzpicture}
+  % First triangle
+  \coordinate (A) at (0,0);
+  \coordinate (B) at (3,0);
+  \coordinate (C) at (2,2);
+  \draw (A) -- (B) -- (C) -- cycle;
+
+  % Second triangle
+  \coordinate (D) at (6,0);
+  \coordinate (E) at (9,0);
+  \coordinate (F) at (7,2);
+  \draw (D) -- (E) -- (F) -- cycle;
+
+  % Labeling the vertices
+  \node[below] at (A) {$A$};
+  \node[below] at (B) {$B$};
+  \node[above] at (C) {$C$};
+  \node[below] at (D) {$D$};
+  \node[below] at (E) {$E$};
+  \node[above] at (F) {$F$};
+
+  \draw pic[draw=green!30,fill=green!30,angle radius=0.5cm] {angle=A--C--B};
+  \draw pic[draw=green!30,fill=green!30,angle radius=0.5cm] {angle=D--F--E};
+  \draw pic[draw=red!30,fill=red!30,angle radius=0.5cm] {angle=B--A--C};
+  \draw pic[draw=red!30,fill=red!30,angle radius=0.5cm] {angle=F--E--D};
+  \draw pic[draw=blue!30,fill=blue!30,angle radius=0.5cm] {angle=C--B--A};
+  \draw pic[draw=blue!30,fill=blue!30,angle radius=0.5cm] {angle=E--D--F};
+
+    \tkzMarkSegment[pos=.5,mark=|](C,B)
+    \tkzMarkSegment[pos=.5,mark=|](D,F)
+    \tkzMarkSegment[pos=.5,mark=||](C,A)
+    \tkzMarkSegment[pos=.5,mark=||](E,F)
+    \tkzMarkSegment[pos=.5,mark=|||](B,A)
+    \tkzMarkSegment[pos=.5,mark=|||](E,D)
+\end{tikzpicture}
+\end{center}
+
+Sedangkan $ABC$ dan $DEF$ dikatakan kongruen atau $\triangle ABC \cong \triangle DEF$ jika dan hanya jika $AB=DE, BC=EF, CA=FD$ atau dengan kata lain kedua segitiga tersebut sebangun dan ada salah satu sisi dari kedua segitiga tersebut yang panjangnya sama. Simpelnya kongruen = sama persis.
+\subsection{Teorema Pythagoras}
+Salah satu teorema paling terkenal di kalangan awam (atau setidaknya di pop culture). Diberikan segitiga $ABC$ dengan sudut $C$ siku-siku. Jika panjang sisi $AB=c$, $BC=a$, dan $CA=b$, maka berlaku
+\begin{align*}
+    a^2+b^2=c^2
+\end{align*}
+\begin{center}
+    \begin{tikzpicture}
+    % titik-titik segitiga
+    \coordinate[label=left:$C$]  (C) at (-1.5cm,-1.cm);
+    \coordinate[label=above:$B$] (B) at (-1.5cm,1.8cm);
+    \coordinate[label=right:$A$] (A) at (0.5cm,-1.cm);
+    
+    % pembuatan segitiga
+    \draw (A) -- node[right]{$c$} (B)  -- node[left]{$a$} (C) -- node[below]{$b$} cycle;
+    \end{tikzpicture}
+\end{center}
+\input{High/SoalMath/Geometry/segitigaSebangunKongruen.tex}
+\input{High/SoalMath/Geometry/pythagoras}
+\subsection{Power of a point}
+\begin{figure}[h]
+  \begin{asy}
+    unitsize(1.5cm);
+    pair O, A, B, C, D, E, P;
+    O = (0,0);
+    P = (4,1);
+    E = (0,1);
+    A = dir(50);
+    C = dir(-30);
+    circle o = circumcircle(A,E,C);
+    draw(o);
+    pair B1[] = intersectionpoints(line(A,P), o);
+    pair D1[] = intersectionpoints(line(C,P), o);
+    B = B1[0];
+    D = D1[0];
+    draw(A--B);
+    draw(C--D);
+    draw(P--A);
+    draw(P--D);
+    draw(P--E, red);
+    draw(P--O, blue+dotted);
+    label("$O$",O,SW);
+    label("$A$",A,E);
+    label("$B$",B,N);
+    label("$C$",C,SE);
+    label("$D$",D,SW);
+    label("$P$",P,NE);
+    label("$E$",E,N);
+    \end{asy}
+    \begin{asy}
+    unitsize(1.5cm);
+    pair O, A, B, C, D, P;
+    O = (0,0);
+    A = dir(50);
+    C = dir(130);
+    D = dir(-30);
+    B = dir(-110);
+    P = extension(A,B,C,D);
+    draw(circumcircle(A,B,C));
+    draw(A--B);
+    draw(C--D);
+    draw(A--C--B--D--cycle);
+    draw(O--P, dotted);
+    label("$O$",O,SW);
+    label("$A$",A,E);
+    label("$B$",B,SW);
+    label("$C$",C,NW);
+    label("$D$",D,SE);
+    label("$P$",P,E);
+    \end{asy}
+\end{figure}
+Diberikan lingkaran $\Gamma$ dan titik $P$ yang terletak di dalam atau di luar lingkaran $\Gamma$. Maka definisikan kuasa atau power dari $P$ terhadap lingkaran $\Gamma$ sebagai
+$$Pow_\Gamma (P) = |OP^2-r^2|$$
+dimana $O$ adalah pusat dari $\Gamma$ dan $r$ adalah jari-jari lingkaran $\Gamma$.
+
+Jika $A,B,C,D$ berada di $\Gamma$, serta $AB$ dan $CD$ berpotongan di $P$, maka $$Pow_\Gamma(P)=PA \cdot PB = PC \cdot PD.$$
+Jika $P$ berada di luar $\Gamma$ dan $E$ berada di $\Gamma$ sehingga $PE$ bersinggungan dengan $\Gamma$ di $E$, maka $$Pow_\Gamma (P) = PE^2 =  PA \cdot PB = PC \cdot PD.$$
+\input{High/SoalMath/Geometry/powerOfAPoint}
+\subsection{Trigonometri}
+Banyak sih rumusnya, tapi yang paling sering dipake di olim:
+\begin{enumerate}
+    \item $\sin (-x) = -\sin x$.
+    \item $\cos (-x) = \cos x$.
+    \item $\tan(-x) = -\tan x$.
+    \item $\sin (90^\circ-x) = \sin(90^\circ+x)=\cos x$
+    \item $\sin^2 x + \cos^2 x = 1$.
+    \item $\sin(90^\circ-x)=\sin(90^\circ+x)=\cos x$.
+    \item $\sin(a \pm b) = \sin a \cos b \pm \cos a \sin b$.
+    \item $\sin 2x = 2\sin x \cos x$.
+    \item $\cos(a \pm b) = \cos a \cos b \mp \sin a \sin b$.
+    \item $\cos 2x = \cos^2 x - \sin^2 x = 2\cos^2 x -1 = 1-2\sin^2 x$.
+    \item $\tan(a \pm b) = \dfrac{\tan a \pm \tan b}{1 \mp \tan a \tan b}$.
+\end{enumerate}
+Cara menghafal yang gampang bisa pake "metode sumbu".
+\input{High/SoalMath/Geometry/trigonometri.tex}
+\subsection{Segi-n}
+Pada segi-$n$, jumlah sudut totalnya adalah $(n-2)\times 180^\circ$. Hal ini dikarenakan kita dapat membuat $n-2$ segitiga di dalam sembarang segi-$n$ dimana jumlah total sudut dalam setiap segitiga adalah $180^\circ$.\\
+
+Dari fakta tersebut, berarti besar setiap sudut segi-$n$ beraturan adalah $\dfrac{(n-2)}{n}180^\circ$.
+\subsection{Luas}
+Misalkan $[A_1A_2A_3\dots A_n]$ menotasikan luas bangun $A_1A_2A_3\dots A_n$. 
+
+Misalkan $r$ adalah panjang jari-jari lingkaran dalam $\triangle ABC$, $s=\frac{1}{2}(a+b+c)$ adalah setengah keliling $\triangle ABC$ dimana $a=BC, b=CA, c=AB$ serta $AT$ adalah garis tinggi $\triangle ABC$.
+
+\subsection{Perbandingan Luas}
+Jika pada segitiga $ABC$, titik $D,E,F$ berturut-turut berada di segmen $BC$,$CA$,$AB$, maka 
+\begin{enumerate}
+    \item $\dfrac{BD}{DC} = \dfrac{[ABD]}{[ADC]}.$
+    \item $\dfrac{[AEF]}{[ABC]}=\dfrac{AE \cdot AC}{AF \cdot AB}.$
+\end{enumerate}
+\subsubsection{Rumus Luas Segitiga Standar}
+$$[ABC]  = \dfrac{1}{2}BC \cdot AT$$
+\subsubsection{Rumus Luas Segitiga dengan Sinus}
+$$[ABC]  = \dfrac{1}{2}AB\cdot AC \cdot \sin \angle A$$
+\subsubsection{Rumus Luas Segitiga yang Melibatkan Jari-jari Lingkaran Dalam}
+$$[ABC]  =  rs$$
+\subsubsection{Rumus Luas Segitiga yang Melibatkan Jari-jari Lingkaran Luar}
+Misalkan $R$ adalah panjang jari-jari lingkaran luar dari segitiga $ABC$ dengan $AB=c$, $BC=a$, dan $CA=b$.
+$$[ABC]  =  \dfrac{abc}{4R}$$
+\subsubsection{Rumus Heron}
+$$[ABC]  = \sqrt{s(s-a)(s-b)(s-c)}$$
+\input{High/SoalMath/Geometry/luas.tex}
+\subsection{Teorema Garis Bagi}
+Misalkan garis bagi sudut $\angle A$ (bisa garis bagi dalam atau garis bagi luar) memotong garis $BC$ di $K$, maka 
+$$\dfrac{BK}{CK} = \dfrac{AB}{AC}.$$
+\begin{center}
+    \begin{tikzpicture}
+        \coordinate (O) at (0,0);
+        \coordinate (B) at (-25:2cm);
+        \coordinate (A) at (205:2cm);
+        \coordinate (C) at (130:2cm);
+        \coordinate (D) at (-90:2cm);
+        
+        \draw (O) circle (2cm);
+        \draw (A) -- (B) -- (C) -- cycle;
+        \node[right] at (B) {$B$};
+        \node[below left] at (A) {$A$};
+        \node[above left] at (C) {$C$};
+        \node[above left] at (O) {$O$};
+        \draw (A) -- node[above]{$R$} (O);
+    \end{tikzpicture}
+\end{center}
+\input{High/SoalMath/Geometry/teoremaGarisBagi.tex}
+\subsection{Dalil Sinus dan Dalil Cosinus}
+    Misalkan $ABC$ adalah suatu segitiga dengan $R$ adalah panjang jari-jari lingkaran luarnya.
+\begin{center}
+    \begin{tikzpicture}
+    \coordinate (O) at (0,0);
+    \coordinate (B) at (0:2cm);
+    \coordinate (A) at (210:2cm);
+    \coordinate (C) at (130:2cm);
+    
+    \draw (O) circle (2cm);
+    \draw (A) -- (B) -- (C) -- cycle;
+    \node[right] at (B) {$B$};
+    \node[below left] at (A) {$A$};
+    \node[above left] at (C) {$C$};
+    \node[above left] at (O) {$O$};
+    \draw (A) -- node[above]{$R$} (O);
+    \end{tikzpicture}
+\end{center}
+    \subsubsection{Dalil Sinus}
+    $$\dfrac{BC}{\sin \angle A} = \dfrac{CA}{\sin \angle B}= \dfrac{AB}{\sin \angle C} = 2R$$
+    
+    \subsubsection{Dalil Cosinus}
+    \begin{align*}
+        AB^2 &= BC^2 + CA^2 - 2\cdot BC \cdot CA \cdot \cos \angle C\\
+        BC^2 &= CA^2 + AB^2 - 2\cdot CA \cdot AB \cdot \cos \angle A\\
+        CA^2 &= AB^2 + BC^2 - 2\cdot AB \cdot BC \cdot \cos \angle B
+    \end{align*}
+\input{High/SoalMath/Geometry/dalilSinusCosinus.tex}
+\subsection{Dalil Stewart}
+    Pada segitiga $ABC$ dengan titik $D$ pada segmen $BC$, dimana $AB=c, BC=a, CA=b, AD=d, BD=m, CD=n$, maka berlaku
+    \begin{align*}
+        BC \cdot AD^2 + BC \cdot BD \cdot CD &= CA^2 \cdot BD + AB^2 \cdot CD\\
+        ad^2+amn &= b^2m+c^2n
+    \end{align*}
+\begin{center}
+    \begin{tikzpicture}
+    % titik-titik segitiga
+    \coordinate[label=left:$C$]  (C) at (-1.5cm,-1.cm);
+    \coordinate[label=right:$B$] (B) at (1.5cm,-1.0cm);
+    \coordinate[label=above:$A$] (A) at (0.5cm,1.732cm);
+    % titik-titik cevian
+    \coordinate[label=below:$D$] (D) at ($(C)!0.3!(B)$);
+    
+    % pembuatan segitiga
+    \draw (A) -- node[right]{$c$} (B) -- node[above]{$m$} (D) -- node[above]{$n$} (C) -- node[left]{$b$} (A);
+    
+    
+    % pembuatan cevian
+    \draw (B) --node[below]{$a$}(C);
+    \draw (A) --node[right]{$d$}(D);
+    \end{tikzpicture}
+\end{center}
+\input{High/SoalMath/Geometry/dalilStewart.tex}
+\subsection{Dalil Ceva}
+Jika pada segitiga $ABC$, titik $D,E,F$ berturut-turut berada di segmen $BC$,$CA$,$AB$, maka 
+$AD,BE,CF$ konkuren atau berpotongan di satu titik jika dan hanya jika
+$$\dfrac{AF}{FB} \cdot \dfrac{BD}{DC} \cdot \dfrac{CE}{EA} = 1.$$
+\begin{center}
+    \begin{tikzpicture}
+    % titik-titik segitiga
+    \coordinate[label=left:$A$]  (A) at (-1.5cm,-1.cm);
+    \coordinate[label=right:$B$] (B) at (1.5cm,-1.0cm);
+    \coordinate[label=above:$C$] (C) at (0.5cm,1.732cm);
+    
+    % pembuatan segitiga
+    \draw (A) -- (B) -- (C) -- cycle;
+    
+    % titik-titik cevian
+    \coordinate[label=below:$F$] (F) at ($(A)!0.7!(B)$);
+    \coordinate[label=right:$D$] (D) at ($(B)!0.5!(C)$);
+    \coordinate[label=left:$E$]  (E) at ($(C)!0.3!(A)$);
+    
+    % pembuatan cevian
+    \draw (A) -- (D);
+    \draw (B) -- (E);
+    \draw (C) -- (F);
+    \end{tikzpicture}
+\end{center}
+\input{High/SoalMath/Geometry/dalilCeva.tex}
+\subsection{Dalil Menelaus}
+Jika pada segitiga $ABC$, titik $P,Q,R$ berturut-turut berada pada garis (bisa di perpanjangan segmen) $BC$,$CA$, $AB$, maka $P,Q,R$ segaris jika dan hanya jika
+$$\dfrac{AR}{RB} \cdot \dfrac{BP}{PC} \cdot \dfrac{CQ}{QA} = 1.$$
+\begin{center}
+    \begin{asy}
+        unitsize(10);
+        defaultpen(fontsize(8));
+        pair P=(7,6), Q=(0,0), C=(10,0), A=(4,0), B=(6,8), R;
+        draw((A)--(B)--(C)--cycle,blue+0.75);
+        draw(P--R--Q--A);
+        R=intersectionpoint(A--B,Q--P);
+        dot(A^^B^^C^^P^^Q^^R);
+        label("A",A,(0,-1));label("B",B,(1,0));label("C",C,(1,0));label("P",P,(1,1));label("Q",Q,(-1,0));label("R",R,(-1,1));
+    \end{asy}
+\end{center}
+\input{High/SoalMath/Geometry/dalilMenelaus.tex}
+\subsection{Dalil Ptolemy}
+    Diketahui sebuah segiempat siklis $ABCD$ maka berlaku
+    $$AB \cdot CD + BC \cdot DA = AC \cdot BD.$$
+
+\begin{center}
+\begin{tikzpicture}
+\coordinate (O) at (0,0);
+\coordinate (B) at (0:2cm);
+\coordinate (A) at (210:2cm);
+\coordinate (D) at (180:2cm);
+\coordinate (C) at (130:2cm);
+
+\draw (O) circle (2cm);
+
+\draw (A) -- (B) -- (C) -- (D) -- cycle;
+\draw[red] (A) -- (C);
+\draw[blue] (B) -- (D);
+
+\node[right] at (B) {$B$};
+\node[below left] at (A) {$A$};
+\node[left] at (D) {$D$};
+\node[above left] at (C) {$C$};
+\node[right] at (O) {$O$};
+\end{tikzpicture}
+\end{center}
+\input{High/SoalMath/Geometry/dalilPtolemy.tex}
+\subsection{Teorema Miquel}
+    Pada segitiga $ABC$, titik $D,E,F$ berturut-turut berada di garis $BC,CA,AB$ maka lingkaran luar dari $\triangle AEF$, $\triangle  BDF$, $\triangle CDE$ akan bertemu atau berpotongan di satu titik, sebut sebagai titik $M$. Titik $M$ ini biasa disebut sebagai \textit{Miquel Point}.

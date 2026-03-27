@@ -1,4 +1,5 @@
 \documentclass[11pt]{scrartcl}
+\PassOptionsToPackage{dvipsnames}{xcolor}
 \usepackage{graphicx}
 \usepackage{tikz}
 \usetikzlibrary{angles,quotes}
@@ -43,5 +44,17 @@
 \usetikzlibrary{arrows}
 
 \begin{document}
-\input{High/subjects}	
+\title{Basic Lessons on High School Math Olympiad}
+\date{\today}
+\author{Azzam L. H. (Instagram: azzam\_29\_12)}
+\maketitle
+\renewcommand*\contentsname{Daftar Isi}
+\tableofcontents
+\newpage
+\input{High/misc}
+\input{High/algebra}
+\input{High/numberTheory}
+\input{High/combinatorics}
+\input{High/geometry}
+\input{High/compOlympiad}
 \end{document}

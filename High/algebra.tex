@@ -1,0 +1,235 @@
+\section{Aljabar}
+\subsection{Pemfaktoran dan Penguraian}
+Tips: Jangan dihafal secara sengaja, tetapi banyak-banyaklah latihan soal, nanti hafal sendiri :D.
+	
+	Untuk $x,y,z \in \CC$.
+
+        \subsubsection{\textit{Basic} yang paling sering muncul}
+        \begin{enumerate}
+            \item $x^2-y^2 = (x+y)(x-y)$.
+	    \item $(x+y)^2 = x^2+2xy+y^2$.
+	    \item $(x-y)^2 = x^2-2xy+y^2$.
+            \item $(x+y)^3 = x^3+y^3+3xy(x+y) = x^3+3x^2y+3xy^2+y^3$. 
+	    \item $(x-y)^3 = x^3-y^3+3xy(x-y) = x^3-3x^2y+3xy^2-y^3$. 
+	    \item $x^3-y^3 = (x-y)(x^2+xy+y^2)$.
+	    \item $x^3+y^3 = (x+y)(x^2-xy+y^2)$.
+	    \item $x^n-y^n = (x-y)(x^{n-1}+x^{n-2}y+x^{n-3}y^2+\dots+xy^{n-2}+y^{n-1})$ untuk $n \in \NN$.
+	    \item $x^n+y^n = (x+y)(x^{n-1}-x^{n-2}y+x^{n-3}y^2-\dots+xy^{n-2}+y^{n-1})$ untuk $n$ bilangan asli \textbf{ganjil}.
+        \end{enumerate}
+
+        \subsubsection{Lebih \textit{Advanced}}
+	\begin{enumerate}
+	    \item $(x+y+z)^2 = x^2+y^2+z^2+2xy+2yz+2zx$.
+	    \item $x^2+y^2+z^2+xy+yz+zx = \frac12(x+y)^2+\frac12(y+z)^2+\frac12(z+x)^2$.
+	    \item $x^2+y^2+z^2-xy-yz-zx = \frac12(x-y)^2+\frac12(y-z)^2+\frac12(z-x)^2$.
+	    \item $x^3+y^3+z^3-3xyz = (x+y+z)(x^2+y^2+z^2-xy-yz-zx)$.
+	    \item $(x+1)(y+1)(z+1)=xyz+xy+yz+zx+x+y+z+1$.
+	    \item (Identitas Sophie Germain) $x^4+4y^4=(x^2+2xy+2y^2)(x^2-2xy+2y^2)$.
+	    \item (Ekspansi Binomial) $(x+y)^n = {n \choose 0}x^ny^0 + {n \choose 1}x^{n-1}y^1+{n \choose 2}x^{n-2}y^2 + \dots + {n \choose n}x^0y^n$.
+	    \item (Fermat Two Square Identity / Brahmagupta-Fibonacci Identity)\\
+        $(a^2+b^2)(c^2+d^2)=(bc+ad)^2+(bd-ac)^2$ untuk $a,b,c,d \in \RR$.
+	\end{enumerate}
+\input{High/SoalMath/Algebra/pemfaktoran.tex}
+\subsection{Eksponen}
+Untuk $a,b,c \in \RR$
+\begin{enumerate}
+    \item $a^0=1$ untuk $a \neq 0$.
+    \item $a^n =  \underbrace{a \cdot a \cdot \ldots \cdot a}_{n \text{ kali}}$ untuk $n \in \NN$.
+    \item $a^b\cdot a^c=a^{b+c}$.
+    \item $a^b\cdot c^b = (ac)^b$.
+    \item $\dfrac{a^b}{a^c}=a^{b-c}$ untuk $a\neq 0$.
+    \item $(a^b)^c=a^{bc}$.
+    \item $a^{-b} = \dfrac{1}{a^b}$ untuk $a \neq 0$.
+    \item $\sqrt[n]{a^b}=a^{\frac{b}{n}}$ untuk $n \in \ZZ_{\ge 2}$
+\end{enumerate}
+\input{High/SoalMath/Algebra/eksponen.tex}
+\subsection{Logaritma}
+Definisi: $a^x =y \iff x = ^a \log y = \log_a y$ untuk $a> 0$, $a \neq 1$, dan $y >0$.
+Sekarang, untuk $a,b,c > 0$ dan $a,b,c \neq 1$
+\begin{enumerate}
+    \item $^a \log b = \dfrac{^p \log b}{^p \log a}$ untuk suatu $p>0, p \neq 1$
+    \item $^a \log a = 1$.
+    \item $^a \log b = \dfrac{1}{^b \log a}$.
+    \item $^a \log b + ^a \log c = ^a \log (bc)$.
+    \item $^a \log b - ^a \log c = ^a \log \left(\dfrac{b}{c}\right)$.
+    \item $^a \log b^n = n \cdot ^a \log b$.
+    \item $^{a^n} \log b^m = ^a \log b^{\frac{m}{n}} = \dfrac{m}{n}\cdot ^a \log b$ untuk suatu $m,n \in \RR$ dan $n \neq 0$.
+    \item $^a \log b \cdot ^b\log c = ^a \log c$.
+\end{enumerate}
+\input{High/SoalMath/Algebra/logaritma.tex}
+\subsection{Barisan dan Deret}
+Simpelnya, \textbf{barisan} adalah kumpulan bilangan $a_1,a_2,\dots,a_n$ (beberapa buku atau author memulai dari $a_1$ namun ada juga yang memulai dari $a_0$, kita pakai yang dari $a_1$) yang memenuhi properti atau pola tertentu, sedangkan \textbf{deret} adalah jumlah bilangan-bilangan barisan tadi yaitu $a_1+a_1+a_2+\dots+a_n$ untuk suatu bilangan bulat non-negatif $n$.
+
+Barisan dan deret di atas adalah barisan dan deret terbatas. Bagaimana dengan barisan dan deret tak hingga? Observasi saja nilai $n$ yang sangat besar, atau secara formal observasi saat $n \rightarrow \infty.$
+
+\textbf{Sekali lagi barisan (bilangan-bilangan) $\neq$ deret (jumlah).}
+
+Untuk anak SMP (dan SMA) barisan dan deret paling familiar adalah barisan dan deret aritmatika serta geometri. Untuk tantangan lebih lanjut, silakan kerjakan latihan soal :p.
+
+\subsubsection{Notasi Sigma dan Pi}
+Jumlah dari suku-suku pada suatu barisan dinotasikan dengan huruf sigma kapital:
+$$\sum_{i=k}^{j} a_i = a_k+a_{k+1}+\dots+a_j.$$
+Perkalian dari suku-suku pada suatu barisan dinotasikan dengan huruf pi kapital:
+$$\prod_{i=k}^{j} a_i = a_k \cdot a_{k+1}\cdot \ldots \cdot a_j.$$
+
+Ada juga $cyc$ sebagai notasi siklis dan $sym$ sebagai notasi simetris.
+
+Misalkan kita akan mengevaluasi jumlah siklis dan simetris dari $a,b,c$.
+
+Penjumlahan bersifat \textbf{siklis} apabila setiap suku tersebut dapat diperoleh dengan "menggeser" secara siklis atau "memutar" suku lainnya.
+Contoh: $$\sum_{cyc} a = a+b+c$$
+     $$\sum_{cyc} ab = ab+ bc + ca$$
+Sedikit mirip dengan penjumlahan siklis, suatu penjumlahan bersifat \textbf{simetris} apabila setiap suku dapat diperoleh dari permutasi $n$ variabel dari suku-suku lainnya pada penjumlahan. Contoh: 
+    $$\sum_{sym} a = a+b+c$$
+    $$\sum_{sym} ab = ab+ ac + ba + bc + ca + cb$$
+\subsubsection{Barisan dan Deret Aritmatika}
+Barisan aritmatika in a nutshell: $a,a+b,a+2b,\dots$ dimana setiap \textbf{suku ke-$n$} dari barisan tersebut adalah $$a_n=a+(n-1)b$$ untuk suatu bilangan asli $n$ dan bilangan \textbf{real} $a,b$.
+
+Lalu, \textbf{rumus deret}nya atau jumlah $n$ suku pertama barisan tersebut adalah (coba buktikan rumus ini) $$S_n = a_1+a_2+\dots+a_n=a+(a+b)+(a+2b)+\dots+(a+(n-1)b)=\dfrac{n}{2}(2a+(n-1)b).$$
+\subsubsection{Barisan dan Deret Geometri}
+ Barisan geometri in a nutshell: $a,ar,ar^2,\dots$ dimana setiap \textbf{suku ke-$n$} dari barisan tersebut adalah $$a_n=ar^{n-1}$$ untuk suatu bilangan asli $n$ dan bilangan \textbf{real} $a$ dan $r \neq 0$.
+
+Lalu, \textbf{rumus deret}nya atau jumlah $n$ suku pertama barisan tersebut adalah (coba buktikan rumus ini) $$S_n = a_1+a_2+\dots+a_n=a+ar+ar^2+\dots+ar^{n-1}=\dfrac{a(1-r^n)}{1-r}.$$
+Perhatikan jika $-1 < r < 1$ maka saat $n \rightarrow \infty$ rumus deret tak hingganya menjadi (why?) $$S_\infty =  \dfrac{a}{1-r}.$$
+\subsubsection{Rumus Barisan dan Deret Lainnya}
+Sangat dianjurkan untuk mencoba membuktikan rumus-rumus berikut. Untuk bilangan asli $n$, kita punya
+\begin{enumerate}
+    \item $1+2+\dots+n = \dfrac{n(n+1)}{2}.$
+    \item $1^2+2^2+\dots+n^2 = \dfrac{n(n+1)(2n+1)}{6}.$
+    \item $1^3+2^3+\dots+n^3 = \left(1+2+\dots+n\right)^2= \left(\dfrac{n(n+1)}{2}\right)^2.$
+\end{enumerate}
+
+\subsubsection{Prinsip Teleskopik}
+Pernahkah kalian melihat deret yang dapat saling menghilangkan atau bisa "dicoret"? Berikut beberapa bentuk umumnya. Untuk lebih banyak contoh, silakan lihat contoh soal.
+
+\begin{enumerate}
+    \item $\sum_{i=1}^{n} (a_{i+1}-a_{i}) = (a_2-a_1)+(a_3-a_2)+\dots+(a_{n+1}-a_{n}) = a_{n+1}-a_1.$
+    \item $\prod_{i=1}^{n} \dfrac{a_{i+1}}{a_i} =  \dfrac{a_2}{a_1}\cdot\dfrac{a_3}{a_2}\cdot\dfrac{a_4}{a_3}\cdot\ldots\cdot\dfrac{a_{n+1}}{a_n} = \dfrac{a_{n+1}}{a_1}.$
+\end{enumerate}
+\input{High/SoalMath/Algebra/barisanDeret.tex}
+\subsection{Fungsi}
+Fungsi $f : A \rightarrow B$ adalah suatu pemetaan dari $A$ ke $B$ dimana $A$ adalah domain dan $B$ adalah kodomain fungsi. Lebh lanjut, fungsi $f$ \textit{well-defined} jika untuk $\forall x \in A$ terdapat tepat satu (jadi ngga boleh ada dua) $y \in B$ sehingga $f(x)=y$. Himpunan seluruh $y$ hasil pemetaan fungsi tersebut dinamakan \textbf{range} fungsi $f$.
+
+Tips-tips mengerjakan soal fungsi adalah (tergantung domainnya)
+\begin{enumerate}
+\item Substitusi $x=0$
+\item Mengganti $x$ dengan $-x$
+\item Mmebentuk suatu bentuk yang simetris (banyak-banyak latihan soal saja biar mengerti).
+\end{enumerate}
+
+\subsubsection{Fungsi Injektif (satu-satu)}
+Definisi: Untuk setiap $x \in A$ ada tepat satu $y \in B$ sehingga $f(x)=y$. 
+Catatan: Range dari fungsi $f$ tidak perlu mencover seluruh kodomain $B$.\\
+Contoh: Dengan $f: \RR \rightarrow \RR$, $f(x)=x$, $f(x)=2x+3$, dll.\\ 
+Contoh yang bukan fungsi injektif: Dengan $f(x)=x^2$ dari real ke real, misalkan $f(x)=4$, berarti $x=2$ dan $x=-2$, padahal biar injektif harusnya $x$ cuma satu aja.
+
+\subsubsection{Fungsi Surjektif (Fungsi Onto)}
+Definisi: Untuk setiap $y \in B$ terdapat $x \in A$ sehingga $f(x)=y$. 
+Catatan: Dapat dikatakan range fungsi tersebut adalah kodomainnya juga (untuk sebagian besar kasus) atau dengan kata lain $f(x)$ "menyentuh" semua nilai yang mungkin di kodomainnya. \\
+Contoh: $f(x)=x$, $f(x)=x^3$, dll.\\
+Contoh yang bukan fungsi surjektif: $f(x)=x^4$ dari real ke real, perhatikan bahwa $f(x)$ harus "mengcover" semua nilai, namun adakah $x$ yang membuat $f(x)=-1$? Tidak ada bukan, berarti bukan fungsi surjektif.
+
+\subsubsection{Fungsi Bijektif}
+Fungsi yang injektif sekaligus surjektif.
+
+\subsection{Komposisi Fungsi}
+Simpelnya, fungsi di dalam fungsi. Untuk fungsi $f:A \rightarrow B$ dan $g:B \rightarrow C$, komposisi fungsinya adalah
+$$(g \circ f)(x) = g(f(x)).$$
+
+\subsubsection{Invers Fungsi}
+Simpelnya kebalikan fungsi. Invers dari fungsi $f: A \rightarrow B$ adalah fungsi $f^{-1} : B \rightarrow A$ dengan didefinisikan sebagai
+$$f^{-1}(f(x))=x.$$
+Dengan kata lain, kita punya $f(x)=y$ jika dan hanya jika $f^{-1}(y)=x$.
+\input{High/SoalMath/Algebra/fungsi.tex}
+\subsection{Polinomial / Suku banyak}
+Suatu polinomial real $P(x)$ yang mempunyai derajat $n$ atau $deg(P) = n$ untuk suatu bilangan bulat non negatif $n$ dinyatakan sebagai
+$$P(x)=a_nx^n+a_{n-1}x^{n-1}+\dots+a_ax+a_0$$
+untuk suatu bilangan real $a_n,a_{n-1},\dots,a_0$ dimana $a_n \neq 0$. Dari teorema fundamental aljabar, setiap polinomial $P(x)$ tersebut memiliki maksimal $n$ akar kompleks dan dapat dinyatakan dalam bentuk
+$$P(x)=a(x-x_1)(x-x_2)\dots(x-x_n)$$
+dimana $a = a_n \neq 0$ dan $x_1,x_2,\dots,x_n$ adalah penyelesaian atau akar-akar dari persamaan $P(x)=0$ atau $a(x-x_1)(x-x_2)\dots(x-x_n)=0$.
+
+Catatan: Polinomial suku-sukunya harus memiliki pangkat positif sehingga $P(x)=x^4+5x+\sqrt{2}$ adalah suatu polinomial, tetapi $P(x)=x^3+5x^2+\dfrac{5}{x^4}+\dfrac{1}{x^8}$ bukan polinomial (karena $\dfrac{1}{x^8}$ dan $\dfrac{5}{x^4}$ bukan suku yang memiliki pangkat positif.
+
+\subsubsection{Remainder Theorem}
+Remainder Theorem = Teorema Sisa.
+Sisa polinomial $P(x)$ saat dibagi $(x-a)$ adalah $P(a)$ (why?).
+Dengan kata lain kita dapat membentuk polinomial $P(x)$ menjadi
+$$P(x)=Q(x)(x-a)+P(a)$$
+untuk suatu polinomial tak nol $Q(x)$ dengan $deg(Q)<deg(P)$.
+\subsubsection{Factor Theorem}
+Factor Theorem = Teorema Faktor.
+Hasil bagi polinomial $P(x)$ saat dibagi $(x-a)$ adalah $0$ atau $P(a)=0$ jika dan hanya jika $(x-a)$ adalah faktor dari $P(x)$ (why?).
+Dengan kata lain kita dapat membentuk polinomial $P(x)$ menjadi
+$$P(x)=Q(x)(x-a)$$
+untuk suatu polinomial tak nol $Q(x)$ dengan $deg(Q)<deg(P)$.
+\subsubsection{Teorema Vieta}
+\begin{itemize}
+    \item $x_1+x_2+\dots+x_n=-\dfrac{a_{n-1}}{a_n}$
+    \item $x_1x_2+x_1x_3+\dots+x_{n-1}x_n=\dfrac{a_{n-2}}{a_n}$
+    \item \dots
+    \item $x_1x_2x_3\ldots x_n = (-1)^{n-1}\dfrac{a_{0}}{a_n}$
+\end{itemize}
+
+Contoh:
+\begin{enumerate}
+\item Untuk $ax^3+bx^2+cx+d=0$ kita punya $x_1+x_2+x_3=-\dfrac{b}{a}$, $x_1x_2+x_1x_3+x_2x_3=\dfrac{c}{a}$, dan $x_1x_2x_3=-\dfrac{d}{a}$.
+\item Untuk $ax^2+bx+c=0$ kita punya $x_1+x_2=-\dfrac{b}{a}$ dan $x_1x_2=\dfrac{c}{a}$.
+\end{enumerate}
+\subsubsection{Fungsi Kuadrat}
+Fungsi kuadrat $P(x)=ax^2+bx+c$ termasuk salah satu polinomial yang memiliki derajat 2 dan mempunyai beberapa properti penting:
+\begin{enumerate}
+\item Diskriminan $D=b^2-4ac$. Hal-hal berikut adalah \textbf{akibat langsung dari rumus abc di bawah}: $D>0$ jika dan hanya jika $P(x)$ mempunyai 2 akar real berbeda,  $D=0$ jika dan hanya jika $P(x)$ mempunyai 2 akar real kembar, dan $D<0$ jika dan hanya jika $P(x)$ mempunyai akar kompleks tidak real.
+\item Rumus abc / penyelesaian umum: $x_{1,2} = \dfrac{-b \pm \sqrt{b^2-4ac}}{2a} = \dfrac{-b+\sqrt{D}}{2a}$. Perhatikan dari rumus ini dapat dibuktikan juga rumus Vieta yang sebelumnya ditunjukkan.
+\end{enumerate}
+\input{High/SoalMath/Algebra/polinomial.tex}
+\subsection{Ketaksamaan}
+\subsubsection{QM-AM-GM-HM}
+Untuk bilangan real positif $a_1,a_2,\dots,a_n$ dengan $n\ge 2$,definisikan
+\begin{align*}
+    QM \text{ (Quadratic Mean) } &= \sqrt{\dfrac{a_1^2+a_2^2+\dots+a_n^2}{n}}\\
+    AM \text{ (Arithmetic Mean) } &= \dfrac{a_1+a_2+\dots+a_n}{n}\\
+    GM \text{ (Geometric Mean) } &=
+    \sqrt[n]{a_1a_2\dots a_n}\\
+    HM \text{ (Harmonic Mean) } &=
+    \dfrac{n}{\dfrac{1}{a_1}+\dfrac{1}{a_2}+\dots+\dfrac{1}{a_n}}
+\end{align*}
+
+Maka berlaku $QM \ge AM \ge GM \ge HM$ atau 
+$$\sqrt{\dfrac{a_1^2+a_2^2+\dots+a_n^2}{n}} \ge  \dfrac{a_1+a_2+\dots+a_n}{n}\ge
+    \sqrt[n]{a_1a_2\dots a_n} \ge
+    \dfrac{n}{\dfrac{1}{a_1}+\dfrac{1}{a_2}+\dots+\dfrac{1}{a_n}}$$
+dengan kesamaan terjadi jika dan hanya jika $a_1=a_2=\dots =a_n$.
+\subsubsection{Cauchy-Schwarz}
+Untuk bilangan real $a_1,a_2,\dots,a_n$ dan $b_1,b_2,\dots,b_n$ berlaku
+$$(a_1^2+a_2^2+\dots+a_n^2)(b_1^2+b_2^2+\dots+b_n^2) \ge (a_1b_1+a_2b_2+\dots+a_nb_n)^2$$
+
+dengan kesamaan terjadi jika dan hanya jika $\dfrac{a_1}{b_1}=\dfrac{a_2}{b_2}=\dots =\dfrac{a_n}{b_n}$.
+
+\subsubsection{Ketaksamaan Bernoulli}
+Untuk $x > -1$ berlaku $(1+x)^n \ge 1+nx$.
+
+\subsection{Ketaksamaan Kuadrat}
+Untuk $x \in \RR$, berlaku kuadrat sempurnanya selalu nonnegatif atau $x^2 \ge 0$. Hal ini menyebabkan fungsi kuadrat $f(x)=ax^2+bx+c$ untuk $a \neq 0$ selalu mempunyai nilai minimum atau maksimum saat $x = -\dfrac{b}{2a}$. (why?)
+\input{High/SoalMath/Algebra/ketaksamaan.tex}
+\subsection{Floor and Ceiling}
+Definisikan $\floor{x}$ (\textit{floor} $x$) sebagai bilangan bulat terbesar yang kurang dari sama dengan $x$. Simpelnya, $\floor{x}$ dapat dikatakan sebagai "pembulatan ke bawah". Contoh: $\floor{\pi}=3$, $\floor{2}=2$, $\floor{10,51}=10$, $\floor{-1,5}=-2$.
+
+Definisikan $\ceiling{x}$ (\textit{ceiling} $x$) sebagai bilangan bulat terkecil yang lebih dari sama dengan $x$. Simpelnya, $\ceiling{x}$ dapat dikatakan sebagai "pembulatan ke atas". Contoh: $\ceiling{\pi}=4$, $\ceiling{2}=2$, $\ceiling{10,51}=11$, $\ceiling{-1,5}=-1$.
+
+Definisikan $\{x\}$ sebagai \textit{fractional part} dari $x \in \RR$ dimana $\{x\} = x - \floor{x}$.
+
+Beberapa properti:
+\begin{enumerate}
+    \item $\floor{x}=\ceiling{x}$ untuk $x \in \ZZ$.
+    \item $\floor{x}=\ceiling{x}-1$ untuk $x \not \in \ZZ$.
+    \item $\floor{x} \le  x < \floor{x}+1$ untuk $x \in \RR$.
+    \item $\ceiling{x}-1 < x \le \ceiling{x}$ untuk $x \in \RR$.
+    \item $\floor{n+x}=n+\floor{x}$ dan $\ceiling{n+x}=n+\ceiling{x}$ untuk $n\in \ZZ$ dan $x \in \RR$.
+    \item Untuk semua $x,y \in \RR$ berlaku $\floor{x+y} \ge \floor{x}+\floor{y}$.
+    \item Untuk semua $x,y \in \RR$ jika $x \le y$ berlaku $\floor{x} \le \floor{y}$.
+    \item $0 \le \{x\} < 1$ untuk $x \in \RR$.
+\end{enumerate}
+\subsubsection{Hermite's Identity}
+Untuk sembarang bilangan real $x$ dan bilangan bulat positif $n$,
+$$\floor{nx}=\floor{x}+\floor{x+\dfrac{a}{n}}+\floor{x+\dfrac{2}{n}}+\dots+\floor{x+\dfrac{n-1}{n}}.$$
+\input{High/SoalMath/Algebra/floorCeiling.tex}
